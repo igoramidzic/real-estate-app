@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+    realestateapp_api:
+        restart: unless-stopped
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: realestateapp_api
+        container_name: realestateapp_api
+        ports:
+            - "3000:3000"
+        networks:
+            - backend
+        depends_on:
+            - realestateapp_db
+
+    realestateapp_db:
+        restart: unless-stopped
+        image: mongo:3.6.18-xenial
+        ports:
+            - "27017:27017"
+        container_name: realestateapp_db
+        networks:
+            - backend
+
+networks:
+    backend:
+        driver: bridge

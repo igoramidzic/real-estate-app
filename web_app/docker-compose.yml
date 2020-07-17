@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+    realestateapp_web:
+        restart: unless-stopped
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: realestateapp_web
+        container_name: realestateapp_web
