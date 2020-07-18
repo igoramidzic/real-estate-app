@@ -1,8 +1,6 @@
 import mongoose from "mongoose";
 import bluebird from "bluebird";
 import {
-    MONGO_USERNAME,
-    MONGO_PASSWORD,
     MONGO_HOSTNAME,
     MONGO_PORT,
     MONGO_DB
