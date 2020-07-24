@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
+
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NotFoundComponent } from './not-found.component';
-import { RouterModule } from '@angular/router';
-import { NOTFOUND_ROUTES } from './not-found.routes';
 
 @NgModule({
     declarations: [
@@ -10,7 +9,10 @@ import { NOTFOUND_ROUTES } from './not-found.routes';
     ],
     imports: [
         SharedModule,
-        RouterModule.forChild(NOTFOUND_ROUTES)
     ],
+    exports: [
+    ],
+    providers: [],
+    entryComponents: []
 })
 export class NotFoundModule { }

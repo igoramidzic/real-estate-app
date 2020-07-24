@@ -1,0 +1,5 @@
+<app-progress-bar class="d-block mb-2" [percentage]="quiz.percentageCompleted"></app-progress-bar>
+<div class="d-flex align-items-center justify-content-between">
+  <span class="hint">STEP {{ quiz.currentQuestion }} OUT OF {{ quiz.questionCount }}</span>
+  <span class="hint">{{ quiz.percentageCompleted }}%</span>
+</div>

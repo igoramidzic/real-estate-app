@@ -1,4 +1,4 @@
-export enum EPropertyTypes {
+export enum EPropertyType {
     Apartment = "apartment",
     Condo = "condo",
     House = "house"

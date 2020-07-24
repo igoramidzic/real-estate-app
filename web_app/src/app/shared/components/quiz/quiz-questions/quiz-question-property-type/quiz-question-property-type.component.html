@@ -1,0 +1,9 @@
+<p class="text-center mb-5">What type of property are you looking for?</p>
+
+<div class="d-flex justify-content-center flex-wrap">
+  <div class="p-2" *ngFor="let quizOptionItem of quizOptionItems">
+    <app-quiz-option-item class="d-block" [quizOptionItem]="quizOptionItem" [size]="'lg'"
+      (click)="selectOption(quizOptionItem.value)">
+    </app-quiz-option-item>
+  </div>
+</div>

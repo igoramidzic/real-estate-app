@@ -1,0 +1,6 @@
+<div class="d-flex">
+  <button class="icon-btn btn-lg btn-outline mr-3" *ngIf="quiz.currentQuestion != 1" (click)="onBack()">
+    <img src="assets/icons/left-arrow.svg" alt="">
+  </button>
+  <button class="btn btn-lg btn-primary btn-width-lg" (click)="onNext()" [disabled]="!quiz.canGoNext">Next</button>
+</div>

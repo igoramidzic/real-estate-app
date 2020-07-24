@@ -1,0 +1,22 @@
+<h1 class="text-center mb-4 h1-responsive">Question {{ quiz.currentQuestion }}</h1>
+
+<div [ngSwitch]="quiz.currentQuestion">
+  <div *ngSwitchCase="EQuizQuestions.SaleType">
+    <app-quiz-question-sale-type [quiz]="quiz"></app-quiz-question-sale-type>
+  </div>
+  <div *ngSwitchCase="EQuizQuestions.PropertyTypes">
+    <app-quiz-question-property-type [quiz]="quiz"></app-quiz-question-property-type>
+  </div>
+  <div *ngSwitchCase="EQuizQuestions.Bedrooms">
+    <app-quiz-question-bedrooms [quiz]="quiz"></app-quiz-question-bedrooms>
+  </div>
+  <div *ngSwitchCase="EQuizQuestions.Price">
+    Price
+  </div>
+  <div *ngSwitchCase="EQuizQuestions.Location">
+    Location
+  </div>
+  <div *ngSwitchCase="EQuizQuestions.amenities">
+    amenities
+  </div>
+</div>

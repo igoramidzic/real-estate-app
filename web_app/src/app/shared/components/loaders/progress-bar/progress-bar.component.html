@@ -1,0 +1,8 @@
+<div class="cr-progress"
+  [ngClass]="{ 'cr-progress-sm': size == ProgressBarSizeOption.small, 'cr-progress-lg': size == ProgressBarSizeOption.large }">
+  <div class="cr-progress-container">
+    <div class="cr-progress-bar" [style.width.%]="percentage">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
