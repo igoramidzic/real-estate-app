@@ -1,1 +1,6 @@
-<p>quiz-question-price works!</p>
+<p class="text-center mb-5">What is your budget?</p>
+
+<div class="custom-slider" style="min-width: 330px;">
+  <ng5-slider class="custom-slider" [value]="quiz.priceMin" [highValue]="quiz.priceMax" [options]="sliderOptions"
+    (highValueChange)="priceMaxChanged($event)" (valueChange)="priceMinChanged($event)"></ng5-slider>
+</div>

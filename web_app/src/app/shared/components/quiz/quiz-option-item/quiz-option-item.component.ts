@@ -23,7 +23,8 @@ export interface IQuizOptionItem {
   iconPath: string;
   label: string;
   value: any;
-  selected: boolean;
+  selected?: boolean;
+  disabled?: boolean;
 }
 
 export enum EQuizOptionItemSize {

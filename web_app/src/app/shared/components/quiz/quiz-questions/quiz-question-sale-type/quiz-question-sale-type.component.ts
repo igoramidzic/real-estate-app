@@ -24,14 +24,12 @@ export class QuizQuestionSaleTypeComponent implements OnInit {
       {
         iconPath: "assets/icons/sale-post.svg",
         label: "Buying",
-        value: ESaleType.Buy,
-        selected: false
+        value: ESaleType.Buy
       },
       {
         iconPath: "assets/icons/rent-post.svg",
         label: "Renting",
-        value: ESaleType.Rent,
-        selected: false
+        value: ESaleType.Rent
       }
     ];
 

@@ -1,5 +1,5 @@
 <div class="quiz-option-item"
-  [ngClass]="{ 'quiz-option-item-lg': size == EQuizOptionItemSize.large, 'quiz-option-item-md': size == EQuizOptionItemSize.medium || !size, 'quiz-option-item-sm': size == EQuizOptionItemSize.small, 'selected': quizOptionItem.selected }">
+  [ngClass]="{ 'quiz-option-item-lg': size == EQuizOptionItemSize.large, 'quiz-option-item-md': size == EQuizOptionItemSize.medium || !size, 'quiz-option-item-sm': size == EQuizOptionItemSize.small, 'selected': quizOptionItem.selected, 'disabled': quizOptionItem.disabled }">
   <img class="quiz-icon" [src]="quizOptionItem.iconPath">
   <p class="mb-0" style="font-weight: 500;">{{ quizOptionItem.label }}</p>
 </div>

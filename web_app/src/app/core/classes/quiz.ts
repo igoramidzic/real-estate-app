@@ -37,6 +37,8 @@ export class Quiz {
 
     updateSaleType(saleType: ESaleType): void {
         this._saleType = saleType;
+
+        this.removeUnavilablePropertyTypes();
     }
 
     updatePropertyTypes(propertyTypes: EPropertyType[]): void {
@@ -47,6 +49,16 @@ export class Quiz {
     updateBedroomCounts(bedroomCounts: EBedroomCount[]): void {
         this._bedroomCounts = bedroomCounts;
         if (this._propertyTypes == null) this._propertyTypes = [];
+    }
+
+    updatePriceMin(price: number): void {
+        if (price >= this.availablePriceMin && price <= this.availablePriceMax)
+            this._priceMin = price;
+    }
+
+    updatePriceMax(price: number): void {
+        if (price >= this.availablePriceMin && price <= this.availablePriceMax)
+            this._priceMax = price;
     }
 
     next(): void {
@@ -67,11 +79,13 @@ export class Quiz {
     get canGoNext(): boolean {
         switch (this.currentQuestion) {
             case EQuizQuestions.SaleType:
-                return this.saleTypeIsValid() ? true : false;
+                return this.saleTypeIsValid();
             case EQuizQuestions.PropertyTypes:
-                return this.propertyTypesIsValid() ? true : false;
+                return this.propertyTypesIsValid();
             case EQuizQuestions.Bedrooms:
-                return this.bedroomCountsIsValid() ? true : false;
+                return this.bedroomCountsIsValid();
+            case EQuizQuestions.Price:
+                return this.priceIsValid();
             default:
                 true;
         }
@@ -89,11 +103,64 @@ export class Quiz {
         return this._bedroomCounts && this._bedroomCounts.length > 0;
     }
 
+    priceIsValid(): boolean {
+        return (this._priceMin >= this.availablePriceMin && this._priceMin <= this.availablePriceMax)
+            && (this._priceMax >= this.availablePriceMin && this._priceMax <= this.availablePriceMax)
+    }
+
+    resetPrices(): void {
+        this._priceMin = this.availablePriceMin;
+        this._priceMax = this.availablePriceMax;
+    }
+
     get percentageCompleted(): number {
         return Math.ceil(((this._questionsCompleted) / this.questionCount) * 100);
     }
 
     get completed(): boolean {
         return this._questionsCompleted == this.questionCount;
+    }
+
+    get availablePriceMin(): number {
+        switch (this.saleType) {
+            case ESaleType.Buy:
+                return 0;
+            case ESaleType.Rent:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    get availablePriceMax(): number {
+        switch (this.saleType) {
+            case ESaleType.Buy:
+                return 900000;
+            case ESaleType.Rent:
+                return 10000;
+            default:
+                return 900000;
+        }
+    }
+
+    get availablePropertyTypes(): EPropertyType[] {
+        let propertyTypes: EPropertyType[] = [
+            EPropertyType.Condo,
+            EPropertyType.House
+        ];
+        if (this.saleType == ESaleType.Rent)
+            propertyTypes.push(EPropertyType.Apartment);
+
+        return propertyTypes;
+    }
+
+    private removeUnavilablePropertyTypes(): void {
+        let propertyTypes: EPropertyType[] = [];
+        this._propertyTypes.forEach(propertyType => {
+            if (this.availablePropertyTypes.find(t => t == propertyType))
+                propertyTypes.push(propertyType);
+        })
+
+        this._propertyTypes = propertyTypes;
     }
 }

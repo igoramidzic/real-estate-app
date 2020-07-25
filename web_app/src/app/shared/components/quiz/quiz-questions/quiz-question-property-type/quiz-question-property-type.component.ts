@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Quiz } from 'src/app/core/classes/quiz';
 import { IQuizOptionItem } from '../../quiz-option-item/quiz-option-item.component';
 import { EPropertyType } from 'src/app/core/enums/propertyTypes';
+import { ESaleType } from 'src/app/core/enums/saleTypes';
 
 @Component({
   selector: 'app-quiz-question-property-type',
@@ -22,24 +23,23 @@ export class QuizQuestionPropertyTypeComponent implements OnInit {
   initializeQuestionOptions(): void {
     this.quizOptionItems = [
       {
-        iconPath: "assets/icons/house.svg",
-        label: "House",
-        value: EPropertyType.House,
-        selected: false
-      },
-      {
         iconPath: "assets/icons/apartments.svg",
         label: "Apartment",
-        value: EPropertyType.Apartment,
-        selected: false
+        value: EPropertyType.Apartment
       },
       {
         iconPath: "assets/icons/condo.svg",
         label: "Condo",
-        value: EPropertyType.Condo,
-        selected: false
+        value: EPropertyType.Condo
+      },
+      {
+        iconPath: "assets/icons/house.svg",
+        label: "House",
+        value: EPropertyType.House
       }
     ];
+
+    this.disableRestrictedOptions();
 
     if (this.quiz.propertyTypes)
       this.quiz.propertyTypes.forEach(propertyType => {
@@ -66,4 +66,10 @@ export class QuizQuestionPropertyTypeComponent implements OnInit {
     })
   }
 
+  disableRestrictedOptions(): void {
+    this.quizOptionItems.forEach(o => {
+      if (!this.quiz.availablePropertyTypes.find(propertyType => propertyType == o.value))
+        o.disabled = true;
+    })
+  }
 }
