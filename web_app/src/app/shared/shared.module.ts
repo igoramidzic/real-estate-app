@@ -11,6 +11,7 @@ import { QuizOptionItemComponent } from './components/quiz/quiz-option-item/quiz
 import { QuizQuestionPropertyTypeComponent } from './components/quiz/quiz-questions/quiz-question-property-type/quiz-question-property-type.component';
 import { QuizQuestionBedroomsComponent } from './components/quiz/quiz-questions/quiz-question-bedrooms/quiz-question-bedrooms.component';
 import { QuizQuestionPriceComponent } from './components/quiz/quiz-questions/quiz-question-price/quiz-question-price.component';
+import { QuizQuestionLocationComponent } from './components/quiz/quiz-questions/quiz-question-location/quiz-question-location.component';
 
 @NgModule({
     imports: [
@@ -27,6 +28,7 @@ import { QuizQuestionPriceComponent } from './components/quiz/quiz-questions/qui
         QuizQuestionPropertyTypeComponent,
         QuizQuestionBedroomsComponent,
         QuizQuestionPriceComponent,
+        QuizQuestionLocationComponent,
     ],
     exports: [
         CommonModule,
@@ -38,7 +40,8 @@ import { QuizQuestionPriceComponent } from './components/quiz/quiz-questions/qui
         QuizOptionItemComponent,
         QuizQuestionPropertyTypeComponent,
         QuizQuestionBedroomsComponent,
-        Ng5SliderModule
+        Ng5SliderModule,
+        QuizQuestionLocationComponent
     ]
 })
 export class SharedModule { }

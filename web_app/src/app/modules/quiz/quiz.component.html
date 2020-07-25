@@ -1,5 +1,5 @@
 <div class="d-flex flex-column align-items-center">
-  <app-quiz-question-chooser class="d-block mb-5" [quiz]="quiz"></app-quiz-question-chooser>
+  <app-quiz-question-chooser class="d-block mb-5 w-100" [quiz]="quiz"></app-quiz-question-chooser>
   <app-quiz-navigation-buttons *ngIf="!quiz.completed" class="d-block mb-5" [quiz]="quiz"></app-quiz-navigation-buttons>
   <div style="max-width: 400px; width: 100%">
     <app-quiz-progress [quiz]="quiz"></app-quiz-progress>
