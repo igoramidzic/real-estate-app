@@ -4,5 +4,5 @@ export enum EQuizQuestions {
     Bedrooms,
     Price,
     Location,
-    amenities
+    Amenities
 }

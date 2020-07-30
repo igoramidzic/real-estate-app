@@ -22,6 +22,7 @@ $theme-colors: map-merge(("primary": $primary, "success": $success, "danger": $d
   --line-height: 1.2;
   --border-radius: 8px;
   --hint-color: rgb(190, 190, 190);
+  --hover-color: #f9f9f9;
 }
 
 body {

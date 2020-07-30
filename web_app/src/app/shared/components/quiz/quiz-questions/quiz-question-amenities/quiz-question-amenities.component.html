@@ -1,0 +1,9 @@
+<p class="text-center mb-5">What are your important amenities?</p>
+
+<div class="wrapper d-flex justify-content-center flex-wrap">
+  <div class="p-2" *ngFor="let quizOptionItem of quizOptionItems">
+    <app-quiz-option-item class="d-block" [quizOptionItem]="quizOptionItem" [size]="'sm'"
+      (click)="selectOption(quizOptionItem.value)">
+    </app-quiz-option-item>
+  </div>
+</div>

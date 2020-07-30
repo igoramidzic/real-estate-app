@@ -12,10 +12,14 @@ import { QuizQuestionPropertyTypeComponent } from './components/quiz/quiz-questi
 import { QuizQuestionBedroomsComponent } from './components/quiz/quiz-questions/quiz-question-bedrooms/quiz-question-bedrooms.component';
 import { QuizQuestionPriceComponent } from './components/quiz/quiz-questions/quiz-question-price/quiz-question-price.component';
 import { QuizQuestionLocationComponent } from './components/quiz/quiz-questions/quiz-question-location/quiz-question-location.component';
+import { FormsModule } from '@angular/forms';
+import { QuizQuestionAmenitiesComponent } from './components/quiz/quiz-questions/quiz-question-amenities/quiz-question-amenities.component';
+import { QuizCompletedMessageComponent } from './components/quiz/quiz-completed-message/quiz-completed-message.component';
 
 @NgModule({
     imports: [
         CommonModule,
+        FormsModule,
         Ng5SliderModule,
     ],
     declarations: [
@@ -29,6 +33,8 @@ import { QuizQuestionLocationComponent } from './components/quiz/quiz-questions/
         QuizQuestionBedroomsComponent,
         QuizQuestionPriceComponent,
         QuizQuestionLocationComponent,
+        QuizQuestionAmenitiesComponent,
+        QuizCompletedMessageComponent,
     ],
     exports: [
         CommonModule,
@@ -41,7 +47,9 @@ import { QuizQuestionLocationComponent } from './components/quiz/quiz-questions/
         QuizQuestionPropertyTypeComponent,
         QuizQuestionBedroomsComponent,
         Ng5SliderModule,
-        QuizQuestionLocationComponent
+        QuizQuestionLocationComponent,
+        QuizQuestionAmenitiesComponent,
+        QuizCompletedMessageComponent,
     ]
 })
 export class SharedModule { }

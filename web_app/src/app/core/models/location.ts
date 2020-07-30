@@ -1,5 +1,5 @@
-export interface ILocation {
-    city?: string;
-    zipCode?: number;
-    radius: number;
+export interface ISearchLocation {
+    city: string;
+    state: string;
+    state_full_name: string;
 }

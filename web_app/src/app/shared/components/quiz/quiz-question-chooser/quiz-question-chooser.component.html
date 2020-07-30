@@ -1,5 +1,4 @@
 <h1 class="text-center mb-4 h1-responsive">Question {{ quiz.currentQuestion }}</h1>
-
 <div [ngSwitch]="quiz.currentQuestion">
   <div *ngSwitchCase="EQuizQuestions.SaleType">
     <app-quiz-question-sale-type [quiz]="quiz"></app-quiz-question-sale-type>
@@ -16,7 +15,7 @@
   <div *ngSwitchCase="EQuizQuestions.Location">
     <app-quiz-question-location [quiz]="quiz"></app-quiz-question-location>
   </div>
-  <div *ngSwitchCase="EQuizQuestions.amenities">
-    amenities
+  <div *ngSwitchCase="EQuizQuestions.Amenities">
+    <app-quiz-question-amenities [quiz]="quiz"></app-quiz-question-amenities>
   </div>
 </div>

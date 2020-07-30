@@ -10,7 +10,6 @@ import { EBedroomCount } from 'src/app/core/enums/bedroomCount';
 })
 export class QuizQuestionBedroomsComponent implements OnInit {
 
-
   @Input() quiz: Quiz;
   quizOptionItems: IQuizOptionItem[] = [];
 

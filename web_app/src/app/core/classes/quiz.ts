@@ -2,8 +2,8 @@ import { EQuizQuestions } from '../enums/quizQuestions';
 import { ESaleType as ESaleType } from '../enums/saleTypes';
 import { EPropertyType } from '../enums/propertyTypes';
 import { EBedroomCount } from '../enums/bedroomCount';
-import { ILocation } from '../models/location';
-import { EAmenitiesRent, EAmenitiesSale } from '../enums/amenities';
+import { ISearchLocation } from '../models/location';
+import { EAmenities } from '../enums/amenities';
 
 export class Quiz {
     private _currentQuestion: EQuizQuestions;
@@ -14,8 +14,8 @@ export class Quiz {
     private _bedroomCounts: EBedroomCount[];
     private _priceMin: number;
     private _priceMax: number;
-    private _location: ILocation;
-    private _amenities: (EAmenitiesRent | EAmenitiesSale)[];
+    private _location: ISearchLocation;
+    private _amenities: EAmenities[];
 
     get currentQuestion(): EQuizQuestions { return this._currentQuestion }
     get questionCount(): number { return this._questionCount }
@@ -24,8 +24,8 @@ export class Quiz {
     get bedroomCounts(): EBedroomCount[] { return this._bedroomCounts }
     get priceMin(): number { return this._priceMin }
     get priceMax(): number { return this._priceMax }
-    get location(): ILocation { return this._location }
-    get amenities(): (EAmenitiesRent | EAmenitiesSale)[] { return this._amenities }
+    get location(): ISearchLocation { return this._location }
+    get amenities(): readonly EAmenities[] { return Object.freeze(JSON.parse(JSON.stringify(this._amenities))) }
 
     constructor() {
         this._currentQuestion = EQuizQuestions.SaleType;
@@ -33,6 +33,7 @@ export class Quiz {
         this._questionsCompleted = 0;
         this._propertyTypes = [];
         this._bedroomCounts = [];
+        this._amenities = [];
     }
 
     updateSaleType(saleType: ESaleType): void {
@@ -61,6 +62,21 @@ export class Quiz {
             this._priceMax = price;
     }
 
+    updateLocation(location: ISearchLocation): void {
+        this._location = location;
+    }
+
+    updateAmenity(amenity: EAmenities): void {
+        let amenityIndexInQuiz: number = this._amenities.findIndex(q => q == amenity);
+        let amenityExists: boolean = amenityIndexInQuiz >= 0;
+
+        if (!amenityExists) {
+            this._amenities.push(amenity);
+        }
+        else
+            this._amenities.splice(amenityIndexInQuiz, 1);
+    }
+
     next(): void {
         if (!this.canGoNext || this.completed) return;
         this._questionsCompleted++;
@@ -86,6 +102,10 @@ export class Quiz {
                 return this.bedroomCountsIsValid();
             case EQuizQuestions.Price:
                 return this.priceIsValid();
+            case EQuizQuestions.Location:
+                return this.locationIsValid();
+            case EQuizQuestions.Amenities:
+                return this.amenitiesIsValid();
             default:
                 true;
         }
@@ -101,6 +121,14 @@ export class Quiz {
 
     private bedroomCountsIsValid(): boolean {
         return this._bedroomCounts && this._bedroomCounts.length > 0;
+    }
+
+    private locationIsValid(): boolean {
+        return !!this._location;
+    }
+
+    private amenitiesIsValid(): boolean {
+        return true;
     }
 
     priceIsValid(): boolean {
