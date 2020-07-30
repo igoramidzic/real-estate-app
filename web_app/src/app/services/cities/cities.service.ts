@@ -8,17 +8,20 @@ import * as csv from 'csvtojson';
 })
 export class CitiesService {
 
+  private cities_csv;
+
   constructor(private http: HttpClient) { }
 
   getCitiesFromPrefix(prefix: string): Promise<ISearchLocation[]> {
     prefix = prefix.trim();
     return new Promise(async (resolve, reject) => {
       try {
-        let csvData = await this.http.get('assets/data/uscities.csv', { responseType: 'text' }).toPromise();
+        if (!this.cities_csv)
+          this.cities_csv = await this.http.get('assets/data/uscities.csv', { responseType: 'text' }).toPromise();
 
         let optionsToReturn: ISearchLocation[];
 
-        await csv().fromString(csvData)
+        await csv().fromString(this.cities_csv)
           .then((data: ISearchLocation[]) => {
             optionsToReturn = data.filter(d => {
               let fullString1 = (d.city + ", " + d.state).toLowerCase();
