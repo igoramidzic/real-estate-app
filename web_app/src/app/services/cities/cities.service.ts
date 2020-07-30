@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ISearchLocation } from 'src/app/core/models/location';
 import * as csv from 'csvtojson';
-import { resolve } from 'dns';
 
 @Injectable({
   providedIn: 'root'
