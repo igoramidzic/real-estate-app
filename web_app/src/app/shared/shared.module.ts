@@ -15,6 +15,7 @@ import { QuizQuestionLocationComponent } from './components/quiz/quiz-questions/
 import { FormsModule } from '@angular/forms';
 import { QuizQuestionAmenitiesComponent } from './components/quiz/quiz-questions/quiz-question-amenities/quiz-question-amenities.component';
 import { QuizCompletedMessageComponent } from './components/quiz/quiz-completed-message/quiz-completed-message.component';
+import { MainNavbarComponent } from './components/navbars/main-navbar/main-navbar.component';
 
 @NgModule({
     imports: [
@@ -35,6 +36,7 @@ import { QuizCompletedMessageComponent } from './components/quiz/quiz-completed-
         QuizQuestionLocationComponent,
         QuizQuestionAmenitiesComponent,
         QuizCompletedMessageComponent,
+        MainNavbarComponent,
     ],
     exports: [
         CommonModule,
@@ -50,6 +52,7 @@ import { QuizCompletedMessageComponent } from './components/quiz/quiz-completed-
         QuizQuestionLocationComponent,
         QuizQuestionAmenitiesComponent,
         QuizCompletedMessageComponent,
+        MainNavbarComponent,
     ]
 })
 export class SharedModule { }
