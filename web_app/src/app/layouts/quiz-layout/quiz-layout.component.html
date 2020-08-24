@@ -1,7 +1,13 @@
 <div class="min-vh-100">
-  <div class="container-fluid h-100 d-flex flex-column py-5" style="min-height: inherit;">
-    <div class="flex-grow-1 d-flex flex-column justify-content-center">
-      <router-outlet></router-outlet>
+  <div class="h-100" style="min-height: inherit;">
+
+    <div class="d-flex flex-column " style="min-height: inherit;">
+      <app-quiz-navbar></app-quiz-navbar>
+
+      <div class="container-fluid flex-grow-1 d-flex flex-column justify-content-center py-5">
+        <router-outlet></router-outlet>
+      </div>
     </div>
+
   </div>
 </div>

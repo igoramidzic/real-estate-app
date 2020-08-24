@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutsModule } from './layouts/layouts.module';
 import { CommonModule } from '@angular/common';
+import { AgmCoreModule } from '@agm/core';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [

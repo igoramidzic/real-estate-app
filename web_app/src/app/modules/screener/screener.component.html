@@ -1,7 +1,11 @@
-<!-- <app-main-navbar></app-main-navbar> -->
-
-<div class="p-5 d-flex flex-column align-items-center">
-  <p class="mb-5">This feature is currently under development.</p>
-  <img src="assets/img/park.png" alt="" style="max-width: 200px;" class="mb-5">
-  <a class="btn btn-primary btn-lg" [routerLink]="['/quiz']">Start Quiz</a>
+<div class="d-lg-flex h-100">
+  <div id="left">
+    <agm-map [latitude]="lat" [longitude]="lng" [zoom]='11'>
+      <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+    </agm-map>
+  </div>
+  <div id="right">
+    <app-screener-filter class="d-block p-xl-5 p-lg-4 p-md-5 p-4"></app-screener-filter>
+    <app-screener-property-listings class="d-block p-xl-5 p-lg-4 p-md-5 p-4"></app-screener-property-listings>
+  </div>
 </div>

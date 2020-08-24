@@ -16,12 +16,17 @@ import { FormsModule } from '@angular/forms';
 import { QuizQuestionAmenitiesComponent } from './components/quiz/quiz-questions/quiz-question-amenities/quiz-question-amenities.component';
 import { QuizCompletedMessageComponent } from './components/quiz/quiz-completed-message/quiz-completed-message.component';
 import { MainNavbarComponent } from './components/navbars/main-navbar/main-navbar.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { RouterModule } from '@angular/router';
+import { QuizNavbarComponent } from './components/navbars/quiz-navbar/quiz-navbar.component';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         Ng5SliderModule,
+        GoogleMapsModule,
+        RouterModule
     ],
     declarations: [
         QuizQuestionChooserComponent,
@@ -37,6 +42,7 @@ import { MainNavbarComponent } from './components/navbars/main-navbar/main-navba
         QuizQuestionAmenitiesComponent,
         QuizCompletedMessageComponent,
         MainNavbarComponent,
+        QuizNavbarComponent,
     ],
     exports: [
         CommonModule,
@@ -53,6 +59,8 @@ import { MainNavbarComponent } from './components/navbars/main-navbar/main-navba
         QuizQuestionAmenitiesComponent,
         QuizCompletedMessageComponent,
         MainNavbarComponent,
+        GoogleMapsModule,
+        QuizNavbarComponent,
     ]
 })
 export class SharedModule { }
