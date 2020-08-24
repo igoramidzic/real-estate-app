@@ -6,6 +6,7 @@ import { NotFoundLayoutComponent } from './not-found-layout/not-found-layout.com
 import { LAYOUTS_ROUTES } from './layouts.routes';
 import { QuizLayoutComponent } from './quiz-layout/quiz-layout.component';
 import { ScreenerLayoutComponent } from './screener-layout/screener-layout.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import { ScreenerLayoutComponent } from './screener-layout/screener-layout.compo
     imports: [
         CommonModule,
         SharedModule,
-        RouterModule.forChild(LAYOUTS_ROUTES)
+        RouterModule.forChild(LAYOUTS_ROUTES),
+        GoogleMapsModule
     ],
     exports: [
     ],
