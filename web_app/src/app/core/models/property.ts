@@ -1,10 +1,10 @@
 import {EPropertyType} from '../enums/propertyTypes';
-import {ISearchLocation} from './location';
+import { IAddress } from './address';
 
 export interface IProperty {
     propertyId: number;
     listingId: number;
     price: number
     propertyType: EPropertyType;
-    location: ISearchLocation;
+    address: IAddress;
 }
