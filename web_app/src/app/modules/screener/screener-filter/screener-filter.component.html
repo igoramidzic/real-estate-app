@@ -1,4 +1,4 @@
 <app-initial-city-location-chooser *ngIf="!screenSearch?.location"
   (searchLocationChanged)="searchLocationChanged($event)">
 </app-initial-city-location-chooser>
-{{ screenSearch?.location.city || '' }}
+{{ screenSearch?.location?.city || '' }}

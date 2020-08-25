@@ -36,7 +36,7 @@ export class InitialCityLocationChooserComponent implements OnInit {
   }
 
   chooseLocation(location: ISearchLocation): void {
-    // this.citySearchPrefix = this.getFullStringOfLocation(location);
+    this.citySearchPrefix = this.getFullStringOfLocation(location);
     this.searchLocationChanged.emit(location);
   }
 
