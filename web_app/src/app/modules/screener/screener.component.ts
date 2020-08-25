@@ -47,7 +47,7 @@ export class ScreenerComponent implements OnInit {
 
   onMarkerClick(clickedId: number): void {
     this.selectedListingId = clickedId;
-    console.log(this.selectedListingId)
+    document.getElementById(clickedId.toString()).scrollIntoView();
   }
 }
 
