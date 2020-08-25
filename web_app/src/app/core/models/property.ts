@@ -6,10 +6,10 @@ export interface IProperty {
     listingId: number;
     price: number
     propertyType: EPropertyType;
-    list_date: Date;
+    list_date?: Date;
     last_update: Date;
-    year_built: number;
-    listing_status: EListingStatus;
+    year_built?: number;
+    listing_status?: EListingStatus;
     beds: number;
     baths_full: number;
     baths: number;
@@ -24,7 +24,8 @@ export enum EListingStatus {
 }
 
 export enum EPropertyStatus {
-    ForRent = 'for_rent'
+    ForRent = 'for_rent',
+    ForSale = 'for_sale'
 }
 
 export interface IPropertyPhoto {
