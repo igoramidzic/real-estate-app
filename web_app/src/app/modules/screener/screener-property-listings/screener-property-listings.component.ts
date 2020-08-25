@@ -8,6 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ScreenerPropertyListingsComponent implements OnInit {
 
   @Input() listings;
+  @Input() selectedId: number;
+  
   placeholderItems: number[] = [1, 2, 3, 4, 5, 6]
 
   constructor() { }

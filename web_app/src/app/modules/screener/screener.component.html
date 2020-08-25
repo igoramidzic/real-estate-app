@@ -1,7 +1,8 @@
 <div class="d-flex h-100">
   <div id="left" class="d-none d-lg-block">
-    <agm-map #map [latitude]="lat" [longitude]="lon" [zoom]='12' [usePanning]="true">
-      <agm-marker *ngFor="let m of markers" [latitude]="m.lat" [longitude]="m.lon">
+    <agm-map #map [latitude]="lat" [longitude]="lon" [zoom]='12' [minZoom]='5' [usePanning]="true">
+      <agm-marker *ngFor="let m of markers" [latitude]="m.lat" [longitude]="m.lon" (markerClick)="onMarkerClick(m.id)" 
+        [iconUrl]="m.id === selectedListingId ? '' : 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|4286f4'">
       </agm-marker>
     </agm-map>
   </div>
@@ -10,7 +11,7 @@
       (onNewSearchLocation)="newSearchLocation($event)">
     </app-screener-filter>
     <div style="overflow-y: auto;">
-      <app-screener-property-listings class="flex-fill d-block px-xl-5 p-lg-4 px-md-5 p-3" [listings]="listings">
+      <app-screener-property-listings class="flex-fill d-block px-xl-5 p-lg-4 px-md-5 p-3" [listings]="listings" [selectedId]="selectedListingId">
       </app-screener-property-listings>
     </div>
   </div>

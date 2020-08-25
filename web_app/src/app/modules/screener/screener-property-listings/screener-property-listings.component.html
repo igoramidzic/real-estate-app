@@ -1,7 +1,7 @@
 <div *ngIf="listings">
   <div class="grid">
     <app-property-thumbnail *ngFor="let property of listings; let i = index;" [property]="property"
-      [ngClass]="{ 'active': i == 0 }">
+      [ngClass]="{ 'active': property.propertyId === selectedId }">
     </app-property-thumbnail>
     <app-property-thumbnail-placeholder *ngFor="let item of placeholderItems">
     </app-property-thumbnail-placeholder>
