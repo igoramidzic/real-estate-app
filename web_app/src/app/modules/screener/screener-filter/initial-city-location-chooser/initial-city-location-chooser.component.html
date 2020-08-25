@@ -1,0 +1,25 @@
+<h3 class="mb-md-4 mb-3">What city would you like to live in?</h3>
+
+<div class="wrapper mx-auto d-flex flex-column">
+  <div class="d-flex">
+    <div class="d-flex flex-column flex-fill mr-2">
+      <input #citySearchInput type="text" class="input-lg" [(ngModel)]="citySearchPrefix"
+        (ngModelChange)="queryCitiesAfterTimerExpires()" placeholder="Tampa, FL">
+      <span class="hint align-self-end mt-1"><i class="fas fa-info-circle"></i> Only US cities available</span>
+    </div>
+  </div>
+
+
+  <div class="align-self-stretch mt-4" *ngIf="searchLocations?.length > 0">
+    <div class="list-group">
+      <div class="list-group-item list-group-item-select list-group-item-lg"
+        *ngFor="let searchLocation of searchLocations" (click)="chooseLocation(searchLocation)">
+        {{ getFullStringOfLocation(searchLocation) }}
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showNoLocationsMessage" class="alert alert-primary mt-4">
+    We couldn't find any cities with that name.
+  </div>
+</div>

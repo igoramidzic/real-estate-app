@@ -8,12 +8,14 @@ import { AgmCoreModule } from '@agm/core';
 import { environment } from 'src/environments/environment';
 import { ScreenerFilterComponent } from './screener-filter/screener-filter.component';
 import { ScreenerPropertyListingsComponent } from './screener-property-listings/screener-property-listings.component';
+import { InitialCityLocationChooserComponent } from './screener-filter/initial-city-location-chooser/initial-city-location-chooser.component';
 
 @NgModule({
     declarations: [
         ScreenerComponent,
         ScreenerFilterComponent,
-        ScreenerPropertyListingsComponent
+        ScreenerPropertyListingsComponent,
+        InitialCityLocationChooserComponent
     ],
     imports: [
         SharedModule,

@@ -50,6 +50,7 @@ import { PropertyThumbnailComponent } from './components/properties/property-thu
     ],
     exports: [
         CommonModule,
+        FormsModule,
         QuizQuestionChooserComponent,
         QuizNavigationButtonsComponent,
         ProgressBarComponent,

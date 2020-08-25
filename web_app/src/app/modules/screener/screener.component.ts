@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IPropertyListing } from '../../core/models/property';
+import { ISearchLocation } from '../../core/models/location';
+import { AgmMap } from '@agm/core';
 
 @Component({
   selector: 'app-screener',
@@ -11,7 +13,8 @@ export class ScreenerComponent implements OnInit {
   // will be imported from users preference 
   lat = 27.95;
   lon = -82.45;
-  radius = 10000;
+
+  @ViewChild('map') map: AgmMap;
 
   listings: IPropertyListing[];
   markers: IMarker[];
@@ -26,20 +29,23 @@ export class ScreenerComponent implements OnInit {
     this.listings = listings;
 
     // update markers
-    this.markers = this.listings.map((listing: IPropertyListing) : IMarker => {
+    this.markers = this.listings.map((listing: IPropertyListing): IMarker => {
       return {
         lat: listing.address.lat,
         lon: listing.address.lon,
         id: listing.propertyId
       }
     });
+  }
 
-    // console.log(this.markers);
+  newSearchLocation(searchLocation: ISearchLocation): void {
+    this.lat = +searchLocation.lat;
+    this.lon = +searchLocation.lng;
   }
 }
 
 export interface IMarker {
   lat: number;
-	lon: number;
-	id: number; 
+  lon: number;
+  id: number;
 }

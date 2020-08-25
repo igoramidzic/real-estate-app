@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {environment} from '../../../environments/environment'
+import { environment } from '../../../environments/environment'
 
 import * as faker from 'faker';
 import { ScreenSearch } from '../../core/models/screen-search';
@@ -68,13 +68,11 @@ export class ScreenerService {
             state_code: faker.address.stateAbbr(),
             postal_code: faker.address.zipCode(),
             neighborhood_name: faker.address.streetName(),
-            // lat: +faker.address.latitude(),
-            lat: faker.random.number({ min: 27.93, max: 27.97, precision: 0.001 }),
-            // lon: +faker.address.longitude()
-            lon: faker.random.number({ min: -82.50, max: -82.40, precision: 0.001 })
+            lat: +faker.random.number({ min: +searchCriteria.location.lat - 0.02, max: +searchCriteria.location.lat + 0.02, precision: 0.001 }),
+            lon: +faker.random.number({ min: +searchCriteria.location.lng - 0.02, max: +searchCriteria.location.lng + 0.02, precision: 0.001 })
           },
           sqfeet: faker.random.number({ min: 700, max: 4000 }),
-          thumbnailUrl: 
+          thumbnailUrl:
             this.photos[faker.random.number({ min: 0, max: this.photos.length - 1 })],
         }
 

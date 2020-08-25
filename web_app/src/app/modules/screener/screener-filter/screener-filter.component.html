@@ -1,1 +1,4 @@
-<button class="btn btn-primary btn-lg" (click)="search()">Search</button>
+<app-initial-city-location-chooser *ngIf="!screenSearch?.location"
+  (searchLocationChanged)="searchLocationChanged($event)">
+</app-initial-city-location-chooser>
+{{ screenSearch?.location.city || '' }}

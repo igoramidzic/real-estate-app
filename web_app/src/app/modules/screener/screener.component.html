@@ -1,19 +1,16 @@
 <div class="d-flex h-100">
   <div id="left" class="d-none d-lg-block">
-    <agm-map [latitude]="lat" [longitude]="lon" [zoom]='12'>
-
-      <agm-marker 
-        *ngFor="let m of markers"
-        [latitude]="m.lat" [longitude]="m.lon">
+    <agm-map #map [latitude]="lat" [longitude]="lon" [zoom]='12' [usePanning]="true">
+      <agm-marker *ngFor="let m of markers" [latitude]="m.lat" [longitude]="m.lon">
       </agm-marker>
-    
     </agm-map>
   </div>
   <div id="right" class="d-flex flex-column">
-    <app-screener-filter class="d-block px-xl-5 p-lg-4 px-md-5 p-4" (onNewListings)="newListings($event)">
+    <app-screener-filter class="d-block px-xl-5 p-lg-4 px-md-5 p-3" (onNewListings)="newListings($event)"
+      (onNewSearchLocation)="newSearchLocation($event)">
     </app-screener-filter>
     <div style="overflow-y: auto;">
-      <app-screener-property-listings class="flex-fill d-block px-xl-5 p-lg-4 px-md-5 p-4" [listings]="listings">
+      <app-screener-property-listings class="flex-fill d-block px-xl-5 p-lg-4 px-md-5 p-3" [listings]="listings">
       </app-screener-property-listings>
     </div>
   </div>

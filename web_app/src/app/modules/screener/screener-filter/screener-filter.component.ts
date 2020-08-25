@@ -1,7 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { CitiesService } from 'src/app/services/cities/cities.service';
 import { ScreenerService } from 'src/app/services/screener/screener.service';
 import { IPropertyListing } from '../../../core/models/property';
-import { ScreenSearch } from '../../../core/models/screen-search';
+import { ScreenSearch as IScreenSearch } from '../../../core/models/screen-search';
+import { ISearchLocation } from '../../../core/models/location';
 
 @Component({
   selector: 'app-screener-filter',
@@ -10,15 +12,19 @@ import { ScreenSearch } from '../../../core/models/screen-search';
 })
 export class ScreenerFilterComponent implements OnInit {
 
-  @Output() onNewListings: EventEmitter<IPropertyListing[]> = new EventEmitter();
+  screenSearch: IScreenSearch;
 
-  constructor(private screenerService: ScreenerService) { }
+  @Output() onNewListings: EventEmitter<IPropertyListing[]> = new EventEmitter();
+  @Output() onNewSearchLocation: EventEmitter<ISearchLocation> = new EventEmitter();
+
+  constructor(private screenerService: ScreenerService, private citiesService: CitiesService) { }
 
   ngOnInit(): void {
+
   }
 
-  search(): void {
-    let screenSearch: ScreenSearch = {
+  initializeScreenSearch(): void {
+    this.screenSearch = {
       saleType: [],
       propertyTypes: [],
       priceMin: 245823,
@@ -32,13 +38,22 @@ export class ScreenerFilterComponent implements OnInit {
         lng: -83
       },
       amenities: []
-    }
+    };
+  }
 
-    this.screenerService.getPropertyListings(screenSearch, 10)
+  search(): void {
+    this.screenerService.getPropertyListings(this.screenSearch, 20, 0)
       .then((listings) => {
-        // console.log(listings);
         this.onNewListings.emit(listings);
+
       })
       .catch((e) => console.log(e));
+  }
+
+  searchLocationChanged(searchLocation: ISearchLocation): void {
+    this.initializeScreenSearch();
+    this.screenSearch.location = searchLocation;
+    this.search();
+    this.onNewSearchLocation.emit(searchLocation);
   }
 }
