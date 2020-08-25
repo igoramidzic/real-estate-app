@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import {environment} from '../../../environments/environment'
 
 import * as faker from 'faker';
 import { ScreenSearch } from '../../core/models/screen-search';
 import { EListingStatus, IProperty, EPropertyStatus } from '../../core/models/property';
 import { EPropertyType } from '../../core/enums/propertyTypes';
 import { random } from 'faker';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +62,10 @@ export class ScreenerService {
   ]
 
   constructor() { }
+
+  // getPropertyListings(searchCriteria: ScreenSearch, limit: number = 10, offset = 0, ): Promise<IProperty[]> {
+    
+  // }
 
   getPropertyListings(searchCriteria: ScreenSearch, limit: number = 10, offset = 0): Promise<IProperty[]> {
     return new Promise((resolve, reject) => {

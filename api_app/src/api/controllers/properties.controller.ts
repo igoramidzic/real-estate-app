@@ -15,6 +15,7 @@ router.get("/list-for-sale", async (req: Request, res: Response) => {
         "useQueryString": true
     });
 
+
     try {
         await realtorReq.end( (realtorRes: any) => {        
 
@@ -45,7 +46,7 @@ router.get("/list-for-sale", async (req: Request, res: Response) => {
                         lon: prop.address.lon
                     }
                 }
-            });
+            }).filter((prop : any) :any => prop.propertyType !== "other");
             
             console.log(properties);
 
@@ -55,7 +56,6 @@ router.get("/list-for-sale", async (req: Request, res: Response) => {
     } catch (e) {
         console.log(e);
     }
-    
 });
 
 const consolidatePropertyType = (propertyType: string) : string => {
