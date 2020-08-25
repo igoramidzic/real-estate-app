@@ -6,14 +6,21 @@
   <span class="property-other-address mb-3">{{ property.address.neighborhood_name }},
     {{ property.address.city }}</span>
   <span class="property-price">{{ property.price | currency }}</span>
-  <hr class="w-100">
+
+  <hr class="my-2 w-100">
 
   <div class="d-flex align-items-center">
-    <img class="stat-icon mr-2" src="assets/icons/mattress.svg" alt="">
-    <span class="stat-value mr-3">{{ property.beds }}</span>
-    <img class="stat-icon mr-1" src="assets/icons/toilet.svg" alt="">
-    <span class="stat-value mr-3">{{ property.baths + property.baths_full }}</span>
-    <img class="stat-icon mr-2" src="assets/icons/sqfoot.svg" alt="">
-    <span class="stat-value">{{ property.sqfeet | number }}</span>
+    <div class="mr-4">
+      <img class="stat-icon mr-2" src="assets/icons/mattress.svg" alt="">
+      <span class="stat-value">{{ property.beds }}</span>
+    </div>
+    <div class="mr-4">
+      <img class="stat-icon mr-1" src="assets/icons/toilet.svg" alt="">
+      <span class="stat-value">{{ property.baths + property.baths_full }}</span>
+    </div>
+    <div>
+      <img class="stat-icon mr-2" src="assets/icons/sqfoot.svg" alt="">
+      <span class="stat-value">{{ property.sqfeet | number }} ft<sup>2</sup></span>
+    </div>
   </div>
 </div>
