@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IProperty } from 'src/app/core/models/property';
+import { IPropertyListing } from 'src/app/core/models/property';
 
 @Component({
   selector: 'app-property-thumbnail',
@@ -8,7 +8,7 @@ import { IProperty } from 'src/app/core/models/property';
 })
 export class PropertyThumbnailComponent implements OnInit {
 
-  @Input() property: IProperty;
+  @Input() property: IPropertyListing;
 
   constructor() { }
 

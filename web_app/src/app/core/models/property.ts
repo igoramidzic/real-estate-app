@@ -1,7 +1,7 @@
 import { EPropertyType } from '../enums/propertyTypes';
 import { IPropertyAddress } from './address';
 
-export interface IProperty {
+export interface IPropertyListing {
     propertyId: number;
     listingId: number;
     price: number
@@ -15,7 +15,7 @@ export interface IProperty {
     baths: number;
     prop_status: EPropertyStatus;
     address: IPropertyAddress;
-    photos: IPropertyPhoto[];
+    thumbnailUrl: string;
     sqfeet: number;
 }
 

@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MapInfoWindow, MapMarker } from '@angular/google-maps';
-import { IProperty } from '../../core/models/property';
+import { IPropertyListing } from '../../core/models/property';
 
 @Component({
   selector: 'app-screener',
@@ -9,18 +8,38 @@ import { IProperty } from '../../core/models/property';
 })
 export class ScreenerComponent implements OnInit {
 
-  @ViewChild(MapInfoWindow) infoWindow: MapInfoWindow;
+  // will be imported from users preference 
   lat = 27.95;
-  lng = -82.45;
+  lon = -82.45;
+  radius = 10000;
 
-  listings: IProperty[];
+  listings: IPropertyListing[];
+  markers: IMarker[];
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  newListings(listings: IProperty[]): void {
+  newListings(listings: IPropertyListing[]): void {
+    // update list
     this.listings = listings;
+
+    // update markers
+    this.markers = this.listings.map((listing: IPropertyListing) : IMarker => {
+      return {
+        lat: listing.address.lat,
+        lon: listing.address.lon,
+        id: listing.propertyId
+      }
+    });
+
+    // console.log(this.markers);
   }
+}
+
+export interface IMarker {
+  lat: number;
+	lon: number;
+	id: number; 
 }

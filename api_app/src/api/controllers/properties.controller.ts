@@ -33,7 +33,7 @@ router.get("/list-for-sale", async (req: Request, res: Response) => {
                     baths_full: prop.baths_full,
                     baths: prop.baths,
                     prop_status: "for_sale",
-                    photos:  [prop.thumbnail], // just get thumbnail for now, will call another api GET to get the rest
+                    thumbnailUrl: prop.thumbnail, // just get thumbnail for now, will call another api GET to get the rest
                     sqfeet: prop.building_size.size, // adjust later to accomadate other units
                     address: {
                         line: prop.address.line,

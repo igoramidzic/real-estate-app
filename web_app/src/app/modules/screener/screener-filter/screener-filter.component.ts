@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ScreenerService } from 'src/app/services/screener/screener.service';
-import { IProperty } from '../../../core/models/property';
+import { IPropertyListing } from '../../../core/models/property';
 import { ScreenSearch } from '../../../core/models/screen-search';
 
 @Component({
@@ -10,7 +10,7 @@ import { ScreenSearch } from '../../../core/models/screen-search';
 })
 export class ScreenerFilterComponent implements OnInit {
 
-  @Output() onNewListings: EventEmitter<IProperty[]> = new EventEmitter();
+  @Output() onNewListings: EventEmitter<IPropertyListing[]> = new EventEmitter();
 
   constructor(private screenerService: ScreenerService) { }
 
@@ -34,10 +34,12 @@ export class ScreenerFilterComponent implements OnInit {
       amenities: []
     }
 
-    this.screenerService.getPropertyListings(screenSearch, 10)
+    this.screenerService.getPropertyListingsApi(screenSearch, 10)
       .then((listings) => {
+        console.log(listings);
         this.onNewListings.emit(listings);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => console.log(e))
+      .finally( () => console.log("done"));
   }
 }
