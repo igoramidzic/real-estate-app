@@ -34,12 +34,11 @@ export class ScreenerFilterComponent implements OnInit {
       amenities: []
     }
 
-    this.screenerService.getPropertyListingsApi(screenSearch, 10)
+    this.screenerService.getPropertyListings(screenSearch, 10)
       .then((listings) => {
-        console.log(listings);
+        // console.log(listings);
         this.onNewListings.emit(listings);
       })
-      .catch((e) => console.log(e))
-      .finally( () => console.log("done"));
+      .catch((e) => console.log(e));
   }
 }
