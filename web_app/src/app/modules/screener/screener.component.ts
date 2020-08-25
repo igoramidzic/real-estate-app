@@ -19,6 +19,8 @@ export class ScreenerComponent implements OnInit {
   listings: IPropertyListing[];
   markers: IMarker[];
 
+  selectedListingId: number = 0;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -41,6 +43,11 @@ export class ScreenerComponent implements OnInit {
   newSearchLocation(searchLocation: ISearchLocation): void {
     this.lat = +searchLocation.lat;
     this.lon = +searchLocation.lng;
+  }
+
+  onMarkerClick(clickedId: number): void {
+    this.selectedListingId = clickedId;
+    console.log(this.selectedListingId)
   }
 }
 
