@@ -1,0 +1,49 @@
+.property-img-wrapper {
+  width: 100%;
+}
+
+.property-img {
+  border-radius: var(--border-radius);
+  background-position: center;
+  background-size: cover;
+  padding-top: 75%;
+}
+
+.property-line-address {
+  font-weight: bold;
+  font-size: 1.05rem;
+  color: var(--text-color);
+}
+
+.property-other-address {
+  font-weight: normal;
+  font-size: 0.85rem;
+  color: var(--hint-color);
+}
+
+.property-price {
+  font-weight: normal;
+  font-size: 1.1rem;
+  color: var(--success);
+}
+
+:host(.active) {
+  .property-img-wrapper {
+    padding: 4px;
+    border-radius: 12px;
+    -webkit-box-shadow: inset 0px 0px 0px 2px var(--success);
+    -moz-box-shadow: inset 0px 0px 0px 2px var(--success);
+    box-shadow: inset 0px 0px 0px 2px var(--success);
+    margin-bottom: 0.90rem !important;
+  }
+}
+
+.stat-icon {
+  height: 18px;
+  width: 18px;
+}
+
+.stat-value {
+  font-size: 0.9rem;
+  color: var(--hint-color);
+}

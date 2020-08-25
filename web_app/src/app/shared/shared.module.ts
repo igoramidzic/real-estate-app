@@ -19,6 +19,8 @@ import { MainNavbarComponent } from './components/navbars/main-navbar/main-navba
 import { GoogleMapsModule } from '@angular/google-maps';
 import { RouterModule } from '@angular/router';
 import { QuizNavbarComponent } from './components/navbars/quiz-navbar/quiz-navbar.component';
+import { PropertyThumbnailPlaceholderComponent } from './components/properties/property-thumbnail-placeholder/property-thumbnail-placeholder.component';
+import { PropertyThumbnailComponent } from './components/properties/property-thumbnail/property-thumbnail.component';
 
 @NgModule({
     imports: [
@@ -43,6 +45,8 @@ import { QuizNavbarComponent } from './components/navbars/quiz-navbar/quiz-navba
         QuizCompletedMessageComponent,
         MainNavbarComponent,
         QuizNavbarComponent,
+        PropertyThumbnailPlaceholderComponent,
+        PropertyThumbnailComponent,
     ],
     exports: [
         CommonModule,
@@ -61,6 +65,8 @@ import { QuizNavbarComponent } from './components/navbars/quiz-navbar/quiz-navba
         MainNavbarComponent,
         GoogleMapsModule,
         QuizNavbarComponent,
+        PropertyThumbnailPlaceholderComponent,
+        PropertyThumbnailComponent
     ]
 })
 export class SharedModule { }

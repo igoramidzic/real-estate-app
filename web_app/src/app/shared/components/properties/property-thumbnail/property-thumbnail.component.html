@@ -1,0 +1,19 @@
+<div class="d-flex flex-column">
+  <div class="property-img-wrapper mb-3">
+    <div class="property-img" [ngStyle]="{'background-image': 'url(' + property.photos[0].href + ')'}"></div>
+  </div>
+  <span class="property-line-address mb-1">{{ property.address.line }}</span>
+  <span class="property-other-address mb-3">{{ property.address.neighborhood_name }},
+    {{ property.address.city }}</span>
+  <span class="property-price">{{ property.price | currency }}</span>
+  <hr class="w-100">
+
+  <div class="d-flex align-items-center">
+    <img class="stat-icon mr-2" src="assets/icons/mattress.svg" alt="">
+    <span class="stat-value mr-3">{{ property.beds }}</span>
+    <img class="stat-icon mr-1" src="assets/icons/toilet.svg" alt="">
+    <span class="stat-value mr-3">{{ property.baths + property.baths_full }}</span>
+    <img class="stat-icon mr-2" src="assets/icons/sqfoot.svg" alt="">
+    <span class="stat-value">{{ property.sqfeet | number }}</span>
+  </div>
+</div>

@@ -1,11 +1,15 @@
-<div class="d-lg-flex h-100">
-  <div id="left">
+<div class="d-flex h-100">
+  <div id="left" class="d-none d-lg-block">
     <agm-map [latitude]="lat" [longitude]="lng" [zoom]='11'>
       <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
     </agm-map>
   </div>
-  <div id="right">
-    <app-screener-filter class="d-block p-xl-5 p-lg-4 p-md-5 p-4"></app-screener-filter>
-    <app-screener-property-listings class="d-block p-xl-5 p-lg-4 p-md-5 p-4"></app-screener-property-listings>
+  <div id="right" class="d-flex flex-column">
+    <app-screener-filter class="d-block px-xl-5 p-lg-4 px-md-5 p-4" (onNewListings)="newListings($event)">
+    </app-screener-filter>
+    <div style="overflow-y: auto;">
+      <app-screener-property-listings class="flex-fill d-block px-xl-5 p-lg-4 px-md-5 p-4" [listings]="listings">
+      </app-screener-property-listings>
+    </div>
   </div>
 </div>

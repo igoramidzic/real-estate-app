@@ -1,9 +1,10 @@
-export interface IAddress {
-    street1: string;
-    street2: string;
+export interface IPropertyAddress {
+    line: string;
     city: string;
-    zipcode: string;
+    postal_code: string;
     state: string;
+    state_code: string;
+    neighborhood_name: string;
     lat: number;
-    lng: number;
+    lon: number;
 }

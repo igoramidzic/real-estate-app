@@ -5,11 +5,11 @@ import { ISearchLocation } from './location';
 import { EAmenities } from '../enums/amenities';
 
 export interface ScreenSearch {
-    saleType: ESaleType
-    propertyTypes: EPropertyType;
+    saleType: ESaleType[]
+    propertyTypes: EPropertyType[];
     priceMin: number;
     priceMax: number;
-    bedroomCount: EBedroomCount;
+    bedroomCount: EBedroomCount[];
     location: ISearchLocation;
     amenities: EAmenities[];
 }

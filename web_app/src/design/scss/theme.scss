@@ -18,10 +18,11 @@ $theme-colors: map-merge(("primary": $primary, "success": $success, "danger": $d
   --text-color: #3c3c3c;
   --text-color-light: #b3b3b3;
   --border-color: #e5e5e5;
+  --placeholder-color: #f4f4f4;
   --font-weight: 400;
   --line-height: 1.2;
   --border-radius: 8px;
-  --hint-color: rgb(190, 190, 190);
+  --hint-color: #a9a9a9;
   --hover-color: #f9f9f9;
 }
 
@@ -34,4 +35,9 @@ body {
   font-size: var(--font-size);
   font-weight: var(--font-weight);
   line-height: var(--line-height);
+}
+
+hr {
+  border-top-color: var(--border-color);
+  background-color: var(--border-color);
 }

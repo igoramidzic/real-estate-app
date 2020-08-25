@@ -1,1 +1,16 @@
-<p>screener-property-listings works!</p>
+<div *ngIf="listings">
+  <div class="grid">
+    <app-property-thumbnail *ngFor="let property of listings; let i = index;" [property]="property"
+      [ngClass]="{ 'active': i == 0 }">
+    </app-property-thumbnail>
+    <app-property-thumbnail-placeholder *ngFor="let item of placeholderItems">
+    </app-property-thumbnail-placeholder>
+  </div>
+</div>
+
+<div *ngIf="!listings">
+  <div class="grid">
+    <app-property-thumbnail-placeholder *ngFor="let item of placeholderItems">
+    </app-property-thumbnail-placeholder>
+  </div>
+</div>
