@@ -1,3 +1,8 @@
+.property-listing-item {
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
