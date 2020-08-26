@@ -29,6 +29,7 @@
     "express": "^4.17.1",
     "faker": "^5.0.0",
     "fs": "0.0.1-security",
+    "ng-lazyload-image": "^9.0.0",
     "ng5-slider": "^1.2.4",
     "rxjs": "~6.5.4",
     "stream": "0.0.2",

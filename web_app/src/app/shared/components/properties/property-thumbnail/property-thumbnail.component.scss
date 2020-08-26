@@ -1,12 +1,33 @@
 .property-img-wrapper {
-  width: 100%;
+  border-radius: var(--border-radius);
+  position: relative;
+  display: grid;
+  grid-area: 1/1/-1/-1;
+  object-fit: cover;
+
+  content: '';
+  display: block;
+  padding-top: 62%;
+  overflow: hidden;
+  position: relative;
+  background-color: #F1F1F4;
+
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .property-img {
-  border-radius: var(--border-radius);
-  background-position: center;
-  background-size: cover;
-  padding-top: 75%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
 }
 
 .property-line-address {

@@ -29,7 +29,7 @@ import { SpinnerComponent } from './components/loaders/spinner/spinner.component
         FormsModule,
         Ng5SliderModule,
         GoogleMapsModule,
-        RouterModule
+        RouterModule,
     ],
     declarations: [
         QuizQuestionChooserComponent,
@@ -69,7 +69,7 @@ import { SpinnerComponent } from './components/loaders/spinner/spinner.component
         GoogleMapsModule,
         QuizNavbarComponent,
         PropertyThumbnailPlaceholderComponent,
-        PropertyThumbnailComponent
-    ]
+        PropertyThumbnailComponent,
+    ],
 })
 export class SharedModule { }
