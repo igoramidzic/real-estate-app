@@ -38,7 +38,8 @@ body {
 }
 
 hr {
-  border-top-color: var(--border-color);
+  height: 2px;
+  border-width: 0;
   background-color: var(--border-color);
 }
 
