@@ -21,6 +21,7 @@ export class ScreenerFilterComponent implements OnInit {
   @Input() listings: IPropertyListing[];
   @Output() onNewListings: EventEmitter<IPropertyListing[]> = new EventEmitter();
   @Output() screenSearchUpdated: EventEmitter<IScreenSearch> = new EventEmitter();
+  @Output() fetchingData: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private screenerService: ScreenerService, private route: ActivatedRoute,
     private router: Router, private citiesService: CitiesService) { }
@@ -64,11 +65,14 @@ export class ScreenerFilterComponent implements OnInit {
       .then((listings) => {
         this.onNewListings.emit(listings);
         this.searchLocationChanged(this.screenSearch.location);
+
+        this.fetchingData.emit(false);
       })
       .catch((e) => console.log(e));
   }
 
   searchLocationChanged(searchLocation: ISearchLocation): void {
+    this.fetchingData.emit(true);
     this.screenSearch.location = searchLocation;
     // this.screenSearchUpdated.emit(this.screenSearch);
     this.router.navigate([], { queryParamsHandling: 'merge', queryParams: { location: this.getFullLocationString(searchLocation) } })

@@ -16,6 +16,7 @@ export class ScreenerComponent implements OnInit {
   listings: IPropertyListing[] = [];
   screenSearch: IScreenSearch;
   selectedListingId: number = 0;
+  isLoading: boolean = false;
 
   constructor() { }
 
@@ -32,6 +33,10 @@ export class ScreenerComponent implements OnInit {
 
   updateSelection(newSelectedListingId : number) {
     this.selectedListingId = newSelectedListingId;
+  }
+
+  updateLoadingStatus(isLoading: boolean) {
+    this.isLoading = isLoading;
   }
 }
 

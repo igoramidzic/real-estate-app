@@ -4,8 +4,11 @@
       (markerClick)="updateSelection($event)" [selectedListingId]="selectedListingId"></app-screener-map>
   </div>
   <div id="right" class="d-flex flex-column">
+    <div class="loader-container" *ngIf="isLoading">
+      <!-- add icon here -->
+    </div>
     <app-screener-filter class="d-block px-xl-5 p-lg-4 px-md-5 py-4 px-3" (onNewListings)="newListings($event)"
-      (screenSearchUpdated)="screenSearchUpdated($event)" [listings]="listings">
+      (screenSearchUpdated)="screenSearchUpdated($event)" [listings]="listings" (fetchingData)="updateLoadingStatus($event)">
     </app-screener-filter>
     <div style="overflow-y: auto;">
       <app-screener-property-listings class="flex-fill d-block px-xl-5 p-lg-4 px-md-5  py-4 px-3" [listings]="listings"
