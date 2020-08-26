@@ -9,32 +9,49 @@ import * as csv from 'csvtojson';
 export class CitiesService {
 
   private cities_csv;
+  private searchLocations: ISearchLocation[];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.generateSearchLocationsFromCSV();
+  }
 
-  getCitiesFromPrefix(prefix: string): Promise<ISearchLocation[]> {
-    prefix = prefix.trim().replace(/\s/g, '');
+  private generateSearchLocationsFromCSV(): Promise<void> {
     return new Promise(async (resolve, reject) => {
       try {
         if (!this.cities_csv)
           this.cities_csv = await this.http.get('assets/data/uscities.csv', { responseType: 'text' }).toPromise();
 
+        await csv().fromString(this.cities_csv)
+          .then((searchLocations: ISearchLocation[]) => {
+            this.searchLocations = searchLocations;
+            resolve();
+          })
+      } catch (e) {
+        reject();
+      }
+    })
+  }
+
+  getCitiesFromPrefix(prefix: string, limit = 5): Promise<ISearchLocation[]> {
+    prefix = prefix.trim().replace(/\s/g, '');
+    return new Promise(async (resolve, reject) => {
+      try {
+        if (!this.searchLocations)
+          await this.generateSearchLocationsFromCSV();
+
         let optionsToReturn: ISearchLocation[];
 
-        await csv().fromString(this.cities_csv)
-          .then((data: ISearchLocation[]) => {
-            optionsToReturn = data.filter(d => {
-              let fullString1 = (d.city + ", " + d.state).toLowerCase().replace(/\s/g, '');
-              let fullString2 = (d.city + ", " + d.state_full_name).toLowerCase().replace(/\s/g, '');
+        optionsToReturn = this.searchLocations.filter(d => {
+          let fullString1 = (d.city + ", " + d.state).toLowerCase().replace(/\s/g, '');
+          let fullString2 = (d.city + ", " + d.state_full_name).toLowerCase().replace(/\s/g, '');
 
-              if (fullString1.startsWith(prefix.toLowerCase().replace(/\s/g, '')) || fullString2.startsWith(prefix.toLowerCase().replace(/\s/g, '')))
-                return true;
+          if (fullString1.startsWith(prefix.toLowerCase().replace(/\s/g, '')) || fullString2.startsWith(prefix.toLowerCase().replace(/\s/g, '')))
+            return true;
 
-              return false;
-            })
-          })
+          return false;
+        })
 
-        optionsToReturn.sort((a, b) => a.city > b.city ? 1 : -1);
+        optionsToReturn = optionsToReturn.sort((a, b) => a.city > b.city ? 1 : -1).splice(0, limit);
         resolve(optionsToReturn);
       } catch {
         reject();
@@ -42,31 +59,45 @@ export class CitiesService {
     })
   }
 
-  getSearchLocationFromCityState(cityState: string): Promise<ISearchLocation> {
-    cityState = cityState.trim().replace(/\s/g, '');
+  getCitiesById(id: string): Promise<ISearchLocation> {
     return new Promise(async (resolve, reject) => {
       try {
-        if (!this.cities_csv)
-          this.cities_csv = await this.http.get('assets/data/uscities.csv', { responseType: 'text' }).toPromise();
+        if (!this.searchLocations)
+          await this.generateSearchLocationsFromCSV();
 
-        let possibleLocations: ISearchLocation[];
+        let searchLocation: ISearchLocation = this.searchLocations.find(x => x.id == id);
 
-        await csv().fromString(this.cities_csv)
-          .then((data: ISearchLocation[]) => {
-            possibleLocations = data.filter(d => {
-              let fullString1 = (d.city + ", " + d.state).toLowerCase().replace(/\s/g, '');
-              let fullString2 = (d.city + ", " + d.state_full_name).toLowerCase().replace(/\s/g, '');
+        if (!searchLocation) reject('Location not found.');
 
-              if (fullString1.startsWith(cityState.toLowerCase().replace(/\s/g, '')) || fullString2.startsWith(cityState.toLowerCase().replace(/\s/g, '')))
-                return true;
+        resolve(searchLocation);
+      } catch {
+        reject('Something went wrong.');
+      }
+    })
+  }
 
-              return false;
-            })
-          })
+  getSearchLocationFromCityState(cityState: string): Promise<ISearchLocation> {
+    cityState = cityState.trim().replace(/\s/g, '');
 
-        if (possibleLocations.length == 0) return reject('Could not find this city.');
+    return new Promise(async (resolve, reject) => {
+      try {
+        if (!this.searchLocations)
+          await this.generateSearchLocationsFromCSV();
 
-        resolve(possibleLocations[0]);
+        let searchLocation: ISearchLocation = this.searchLocations.find(d => {
+          let fullString1 = (d.city + ", " + d.state).toLowerCase().replace(/\s/g, '');
+          let fullString2 = (d.city + ", " + d.state_full_name).toLowerCase().replace(/\s/g, '');
+
+          if (fullString1.startsWith(cityState.toLowerCase().replace(/\s/g, '')) || fullString2.startsWith(cityState.toLowerCase().replace(/\s/g, '')))
+            return true;
+
+          return false;
+        })
+
+
+        if (!searchLocation) reject('Location not found.');
+
+        resolve(searchLocation);
       } catch {
         reject();
       }

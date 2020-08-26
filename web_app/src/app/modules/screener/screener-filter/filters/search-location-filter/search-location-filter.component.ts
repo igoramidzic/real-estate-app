@@ -47,7 +47,7 @@ export class SearchLocationFilterComponent implements OnInit {
       this.searchLocations = null;
       return;
     };
-    this.searchLocations = (await this.citiesService.getCitiesFromPrefix(this.citySearchPrefix)).splice(0, 5);
+    this.searchLocations = (await this.citiesService.getCitiesFromPrefix(this.citySearchPrefix));
   }
 
   chooseLocation(location: ISearchLocation): void {

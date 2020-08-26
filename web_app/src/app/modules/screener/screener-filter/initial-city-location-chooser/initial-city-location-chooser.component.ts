@@ -32,7 +32,7 @@ export class InitialCityLocationChooserComponent implements OnInit {
 
   async getCities(): Promise<void> {
     if (this.citySearchPrefix == "") return;
-    this.searchLocations = (await this.citiesService.getCitiesFromPrefix(this.citySearchPrefix)).splice(0, 5);
+    this.searchLocations = (await this.citiesService.getCitiesFromPrefix(this.citySearchPrefix));
   }
 
   chooseLocation(location: ISearchLocation): void {
