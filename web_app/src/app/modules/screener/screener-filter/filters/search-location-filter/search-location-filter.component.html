@@ -5,6 +5,7 @@
     <input type="text" class="search-location-text-input" [(ngModel)]="citySearchPrefix"
       (ngModelChange)="queryCitiesAfterTimerExpires()" [placeholder]="getFullStringOfLocation(searchLocation)">
   </div>
+  <button class="ml-2 btn btn-sm" *ngIf="showCancelButton" (click)="resetForm()">Cancel</button>
 </div>
 
 <div class="wrapper mx-auto d-flex flex-column">

@@ -1,6 +1,6 @@
 <div class="d-flex flex-column" id="{{property.propertyId}}">
   <div class="property-img-wrapper mb-3">
-    <img class="property-img" alt="">
+    <img class="property-img" alt="" [src]="property.thumbnailUrl">
   </div>
   <span class="property-line-address mb-1">{{ property.address.line }}</span>
   <span class="property-other-address mb-3">{{ property.address.neighborhood_name }},

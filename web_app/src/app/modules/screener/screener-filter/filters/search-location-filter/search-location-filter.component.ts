@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ISearchLocation } from '../../../../../core/models/location';
 import { CitiesService } from '../../../../../services/cities/cities.service';
 import { IPropertyListing } from '../../../../../core/models/property';
@@ -8,7 +8,7 @@ import { IPropertyListing } from '../../../../../core/models/property';
   templateUrl: './search-location-filter.component.html',
   styleUrls: ['./search-location-filter.component.scss']
 })
-export class SearchLocationFilterComponent implements OnInit, OnChanges {
+export class SearchLocationFilterComponent implements OnInit {
 
   @Input() listings: IPropertyListing[];
   @Input() searchLocation: ISearchLocation;
@@ -19,11 +19,6 @@ export class SearchLocationFilterComponent implements OnInit, OnChanges {
   timer;
 
   constructor(private citiesService: CitiesService) { }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes.searchLocation && changes.searchLocation.previousValue != changes.searchLocation.currentValue)
-      this.resetForm();
-  }
 
   resetForm(): void {
     this.citySearchPrefix = '';
@@ -56,6 +51,8 @@ export class SearchLocationFilterComponent implements OnInit, OnChanges {
   }
 
   chooseLocation(location: ISearchLocation): void {
+    this.resetForm();
+    if (location.id == this.searchLocation.id) return;
     this.searchLocationChosen.emit(location);
   }
 
@@ -65,5 +62,9 @@ export class SearchLocationFilterComponent implements OnInit, OnChanges {
 
   get showNoLocationsMessage(): boolean {
     return (this.searchLocations && this.searchLocations.length == 0);
+  }
+
+  get showCancelButton(): boolean {
+    return this.citySearchPrefix != '';
   }
 }
