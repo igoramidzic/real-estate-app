@@ -1,13 +1,13 @@
 @import '../../../design/scss/theme.scss';
 
 #left {
+  position: relative;
   flex: 1;
-  -webkit-box-shadow: inset -55px 0px 20px -65px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: inset -55px 0px 20px -65px rgba(0, 0, 0, 0.75);
-  box-shadow: inset -55px 0px 20px -65px rgba(0, 0, 0, 0.75);
 }
 
 #right {
+  box-shadow: -2px 2px 5px 0 rgba(0, 0, 0, .4);
+  position: relative;
   flex: 1;
   max-width: 800px;
 }

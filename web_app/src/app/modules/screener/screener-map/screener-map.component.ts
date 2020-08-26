@@ -28,7 +28,7 @@ export class ScreenerMapComponent implements OnInit, OnChanges {
     if (changes.searchLocation && changes.searchLocation.previousValue != changes.searchLocation.currentValue) {
       setTimeout(() => {
         this.zoom = 12;
-      }, 1000);
+      }, 0);
     }
   }
 
