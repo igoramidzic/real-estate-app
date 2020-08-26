@@ -61,6 +61,8 @@ export class ScreenerFilterComponent implements OnInit {
   search(): void {
     if (!this.screenSearch.location) return;
 
+    this.fetchingData.emit(true);
+
     this.screenerService.getPropertyListings(this.screenSearch, 30, 0)
       .then((listings) => {
         this.onNewListings.emit(listings);
@@ -72,7 +74,6 @@ export class ScreenerFilterComponent implements OnInit {
   }
 
   searchLocationChanged(searchLocation: ISearchLocation): void {
-    this.fetchingData.emit(true);
     this.screenSearch.location = searchLocation;
     // this.screenSearchUpdated.emit(this.screenSearch);
     this.router.navigate([], { queryParamsHandling: 'merge', queryParams: { location: this.getFullLocationString(searchLocation) } })
