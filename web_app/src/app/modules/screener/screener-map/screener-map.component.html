@@ -1,0 +1,5 @@
+<agm-map #map [latitude]="+searchLocation?.lat || 27.9942" [longitude]="+searchLocation?.lng || -82.4451" [zoom]='12'  [usePanning]="true">
+    <agm-marker *ngFor="let l of listings" [latitude]="l.address.lat" [longitude]="l.address.lon" (markerClick)="onMarkerClick(l.propertyId)" 
+      [iconUrl]="l.propertyId === selectedListingId ? '' : 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|4286f4'">
+    </agm-marker>
+</agm-map>

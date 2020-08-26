@@ -4,7 +4,7 @@ import { EBedroomCount } from '../enums/bedroomCount';
 import { ISearchLocation } from './location';
 import { EAmenities } from '../enums/amenities';
 
-export interface ScreenSearch {
+export interface IScreenSearch {
     saleType: ESaleType[]
     propertyTypes: EPropertyType[];
     priceMin: number;

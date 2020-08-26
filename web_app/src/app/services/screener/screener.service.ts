@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment'
 
 import * as faker from 'faker';
-import { ScreenSearch } from '../../core/models/screen-search';
+import { IScreenSearch } from '../../core/models/screen-search';
 import { EListingStatus, IPropertyListing, EPropertyStatus } from '../../core/models/property';
 import { EPropertyType } from '../../core/enums/propertyTypes';
 import { random } from 'faker';
@@ -32,12 +32,12 @@ export class ScreenerService {
 
   constructor(private http: HttpClient) { }
 
-  getPropertyListingsApi(searchCriteria: ScreenSearch, limit: number = 10, offset = 0): Promise<IPropertyListing[]> {
+  getPropertyListingsApi(searchCriteria: IScreenSearch, limit: number = 10, offset = 0): Promise<IPropertyListing[]> {
     return this.http.get<IPropertyListing[]>(environment.apiBase + "/properties/list-for-sale?city=Tampa&state_code=FL&limit=10&offset=0")
       .toPromise();
   }
 
-  getPropertyListings(searchCriteria: ScreenSearch, limit: number = 10, offset = 0): Promise<IPropertyListing[]> {
+  getPropertyListings(searchCriteria: IScreenSearch, limit: number = 10, offset = 0): Promise<IPropertyListing[]> {
     return new Promise((resolve, reject) => {
       let listings: IPropertyListing[] = [];
 

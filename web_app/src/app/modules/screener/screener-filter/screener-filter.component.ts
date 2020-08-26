@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { CitiesService } from 'src/app/services/cities/cities.service';
 import { ScreenerService } from 'src/app/services/screener/screener.service';
 import { IPropertyListing } from '../../../core/models/property';
-import { ScreenSearch as IScreenSearch } from '../../../core/models/screen-search';
+import { IScreenSearch } from '../../../core/models/screen-search';
 import { ISearchLocation } from '../../../core/models/location';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
@@ -16,7 +16,7 @@ export class ScreenerFilterComponent implements OnInit {
   screenSearch: IScreenSearch;
 
   @Output() onNewListings: EventEmitter<IPropertyListing[]> = new EventEmitter();
-  @Output() onNewSearchLocation: EventEmitter<ISearchLocation> = new EventEmitter();
+  @Output() screenSearchUpdated: EventEmitter<IScreenSearch> = new EventEmitter();
 
   constructor(private screenerService: ScreenerService, private route: ActivatedRoute,
     private router: Router, private citiesService: CitiesService) { }
@@ -64,7 +64,7 @@ export class ScreenerFilterComponent implements OnInit {
   searchLocationChanged(searchLocation: ISearchLocation): void {
     console.log(searchLocation)
     this.screenSearch.location = searchLocation;
-    this.onNewSearchLocation.emit(searchLocation);
+    this.screenSearchUpdated.emit(this.screenSearch);
     this.router.navigate([], { queryParams: { location: this.getFullLocationString(searchLocation) } })
   }
 
