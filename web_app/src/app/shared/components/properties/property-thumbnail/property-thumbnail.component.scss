@@ -1,3 +1,5 @@
+.img-wrapper-wrapper {}
+
 .property-img-wrapper {
   border-radius: var(--border-radius);
   position: relative;
@@ -49,13 +51,13 @@
 }
 
 :host(.active) {
-  .property-img-wrapper {
-    padding: 4px;
+  .img-wrapper-wrapper {
+    padding: 5px;
+    -webkit-box-shadow: inset 0px 0px 0px 3px var(--primary-color);
+    -moz-box-shadow: inset 0px 0px 0px 3px var(--primary-color);
+    box-shadow: inset 0px 0px 0px 3px var(--primary-color);
+    margin-bottom: 0.75rem !important;
     border-radius: 12px;
-    -webkit-box-shadow: inset 0px 0px 0px 2px var(--primary-color);
-    -moz-box-shadow: inset 0px 0px 0px 2px var(--primary-color);
-    box-shadow: inset 0px 0px 0px 2px var(--primary-color);
-    margin-bottom: 0.90rem !important;
   }
 }
 
