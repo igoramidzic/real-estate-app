@@ -29,6 +29,10 @@ export class ScreenerComponent implements OnInit {
   screenSearchUpdated(screenSearch: IScreenSearch) {
     this.screenSearch = screenSearch;
   }
+
+  updateSelection(newSelectedListingId : number) {
+    this.selectedListingId = newSelectedListingId;
+  }
 }
 
 

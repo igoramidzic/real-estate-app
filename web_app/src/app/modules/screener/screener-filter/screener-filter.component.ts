@@ -53,7 +53,7 @@ export class ScreenerFilterComponent implements OnInit {
     if (!this.screenSearch.location) return;
     console.log(this.screenSearch)
 
-    this.screenerService.getPropertyListings(this.screenSearch, 20, 0)
+    this.screenerService.getPropertyListings(this.screenSearch, 30, 0)
       .then((listings) => {
         this.onNewListings.emit(listings);
         this.searchLocationChanged(this.screenSearch.location);

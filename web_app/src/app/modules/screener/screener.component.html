@@ -1,6 +1,9 @@
 <div class="d-flex h-100">
   <div id="left" class="d-none d-lg-block">
-    <app-screener-map [listings]="listings" [searchLocation]="screenSearch?.location"></app-screener-map>
+    <app-screener-map [listings]="listings" 
+      [searchLocation]="screenSearch?.location" 
+      (markerClick)="updateSelection($event)"
+      [selectedListingId]="selectedListingId"></app-screener-map>
   </div>
   <div id="right" class="d-flex flex-column">
     <app-screener-filter class="d-block px-xl-5 p-lg-4 px-md-5 p-3" (onNewListings)="newListings($event)" 
