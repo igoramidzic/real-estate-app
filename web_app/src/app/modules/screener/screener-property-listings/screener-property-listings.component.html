@@ -3,14 +3,10 @@
     <app-property-thumbnail *ngFor="let property of listings; let i = index;" [property]="property"
       [ngClass]="{ 'active': property.propertyId === selectedId }" (click)="onThumbnailClick(property.propertyId)">
     </app-property-thumbnail>
-    <app-property-thumbnail-placeholder *ngFor="let item of placeholderItems">
-    </app-property-thumbnail-placeholder>
   </div>
 </div>
 
-<div *ngIf="!listings">
-  <div class="grid">
-    <app-property-thumbnail-placeholder *ngFor="let item of placeholderItems">
-    </app-property-thumbnail-placeholder>
-  </div>
+<div class="grid">
+  <app-property-thumbnail-placeholder *ngFor="let item of placeholderItems">
+  </app-property-thumbnail-placeholder>
 </div>

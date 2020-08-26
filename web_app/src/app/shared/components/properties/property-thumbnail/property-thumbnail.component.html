@@ -1,28 +1,32 @@
-<div class="d-flex flex-column" id="{{property.propertyId}}">
-  <div class="img-wrapper-wrapper mb-3">
-    <div class="property-img-wrapper">
+<div class="d-flex flex-column justify-content-between h-100" id="{{property.propertyId}}">
+  <div class="d-flex flex-column">
+    <div class="property-img-wrapper mb-3">
       <img class="property-img" alt="" [src]="property.thumbnailUrl">
     </div>
+    <span class="property-line-address line-text mb-1">{{ property.address.line }}</span>
+    <span class="property-other-address line-text mb-3">{{ property.address.neighborhood_name }},
+      {{ property.address.city }}</span>
   </div>
-  <span class="property-line-address mb-1">{{ property.address.line }}</span>
-  <span class="property-other-address mb-3">{{ property.address.neighborhood_name }},
-    {{ property.address.city }}</span>
-  <span class="property-price">{{ property.price | currency }}</span>
 
-  <hr class="my-2 w-100">
+  <div>
+    <span class="property-price line-text">{{ property.price | currency }}</span>
 
-  <div class="d-flex align-items-center">
-    <div class="mr-4">
-      <img class="stat-icon mr-2" src="assets/icons/mattress.svg" alt="">
-      <span class="stat-value">{{ property.beds }}</span>
-    </div>
-    <div class="mr-4">
-      <img class="stat-icon mr-1" src="assets/icons/toilet.svg" alt="">
-      <span class="stat-value">{{ property.baths + property.baths_full }}</span>
-    </div>
-    <div>
-      <img class="stat-icon mr-2" src="assets/icons/sqfoot.svg" alt="">
-      <span class="stat-value">{{ property.sqfeet | number }} ft<sup>2</sup></span>
+    <hr class="my-2 w-100">
+
+    <div class="d-flex align-items-center">
+
+      <div class="mr-4">
+        <img class="stat-icon mr-2" src="assets/icons/mattress.svg" alt="">
+        <span class="stat-value">{{ property.beds }}</span>
+      </div>
+      <div class="mr-4">
+        <img class="stat-icon mr-1" src="assets/icons/toilet.svg" alt="">
+        <span class="stat-value">{{ property.baths + property.baths_full }}</span>
+      </div>
+      <div>
+        <img class="stat-icon mr-2" src="assets/icons/sqfoot.svg" alt="">
+        <span class="stat-value">{{ property.sqfeet | number }} ft<sup>2</sup></span>
+      </div>
     </div>
   </div>
 </div>
