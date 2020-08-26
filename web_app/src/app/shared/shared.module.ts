@@ -21,6 +21,7 @@ import { RouterModule } from '@angular/router';
 import { QuizNavbarComponent } from './components/navbars/quiz-navbar/quiz-navbar.component';
 import { PropertyThumbnailPlaceholderComponent } from './components/properties/property-thumbnail-placeholder/property-thumbnail-placeholder.component';
 import { PropertyThumbnailComponent } from './components/properties/property-thumbnail/property-thumbnail.component';
+import { SpinnerComponent } from './components/loaders/spinner/spinner.component';
 
 @NgModule({
     imports: [
@@ -47,6 +48,7 @@ import { PropertyThumbnailComponent } from './components/properties/property-thu
         QuizNavbarComponent,
         PropertyThumbnailPlaceholderComponent,
         PropertyThumbnailComponent,
+        SpinnerComponent,
     ],
     exports: [
         CommonModule,

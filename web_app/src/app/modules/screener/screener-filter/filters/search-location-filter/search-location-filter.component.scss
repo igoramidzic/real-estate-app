@@ -1,0 +1,27 @@
+.results-text {
+  border-bottom: 2px solid transparent;
+}
+
+.search-location-text-input {
+  background-color: #fff;
+  border: none;
+  border-bottom: 2px solid var(--border-color);
+  width: 100%;
+  line-height: var(--line-height);
+  position: relative;
+  top: 1px;
+
+  // height: 42px;
+  padding: 0 0 4px 0;
+
+  font-size: 1.5em;
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+  }
+
+  &::placeholder {
+    color: var(--hint-color);
+  }
+}

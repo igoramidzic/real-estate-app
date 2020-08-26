@@ -64,7 +64,6 @@ export class CitiesService {
             })
           })
 
-        console.log(possibleLocations)
         if (possibleLocations.length == 0) return reject('Could not find this city.');
 
         resolve(possibleLocations[0]);
@@ -72,5 +71,10 @@ export class CitiesService {
         reject();
       }
     })
+  }
+
+  getFullCityStateName(searchLocation: ISearchLocation): string {
+    const { city, state } = searchLocation;
+    return city + ", " + state;
   }
 }

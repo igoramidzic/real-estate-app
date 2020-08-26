@@ -10,6 +10,7 @@ import { ScreenerFilterComponent } from './screener-filter/screener-filter.compo
 import { ScreenerPropertyListingsComponent } from './screener-property-listings/screener-property-listings.component';
 import { InitialCityLocationChooserComponent } from './screener-filter/initial-city-location-chooser/initial-city-location-chooser.component';
 import { ScreenerMapComponent } from './screener-map/screener-map.component';
+import { SearchLocationFilterComponent } from './screener-filter/filters/search-location-filter/search-location-filter.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { ScreenerMapComponent } from './screener-map/screener-map.component';
         ScreenerFilterComponent,
         ScreenerPropertyListingsComponent,
         InitialCityLocationChooserComponent,
-        ScreenerMapComponent
+        ScreenerMapComponent,
+        SearchLocationFilterComponent
     ],
     imports: [
         SharedModule,

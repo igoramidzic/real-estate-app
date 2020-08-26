@@ -1,16 +1,15 @@
 <div class="d-flex h-100">
   <div id="left" class="d-none d-lg-block">
-    <app-screener-map [listings]="listings" 
-      [searchLocation]="screenSearch?.location" 
-      (markerClick)="updateSelection($event)"
-      [selectedListingId]="selectedListingId"></app-screener-map>
+    <app-screener-map [listings]="listings" [searchLocation]="screenSearch?.location"
+      (markerClick)="updateSelection($event)" [selectedListingId]="selectedListingId"></app-screener-map>
   </div>
   <div id="right" class="d-flex flex-column">
-    <app-screener-filter class="d-block px-xl-5 p-lg-4 px-md-5 p-3" (onNewListings)="newListings($event)" 
-    (screenSearchUpdated)="screenSearchUpdated($event)">
+    <app-screener-filter class="d-block px-xl-5 p-lg-4 px-md-5 p-3" (onNewListings)="newListings($event)"
+      (screenSearchUpdated)="screenSearchUpdated($event)" [listings]="listings">
     </app-screener-filter>
     <div style="overflow-y: auto;">
-      <app-screener-property-listings class="flex-fill d-block px-xl-5 p-lg-4 px-md-5 p-3" [listings]="listings" [selectedId]="selectedListingId">
+      <app-screener-property-listings class="flex-fill d-block px-xl-5 p-lg-4 px-md-5 p-3" [listings]="listings"
+        [selectedId]="selectedListingId">
       </app-screener-property-listings>
     </div>
   </div>

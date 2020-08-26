@@ -68,8 +68,8 @@ export class ScreenerService {
             state_code: faker.address.stateAbbr(),
             postal_code: faker.address.zipCode(),
             neighborhood_name: faker.address.streetName(),
-            lat: +faker.random.number({ min: +searchCriteria.location.lat - 0.12, max: +searchCriteria.location.lat + 0.12, precision: 0.001 }),
-            lon: +faker.random.number({ min: +searchCriteria.location.lng - 0.12, max: +searchCriteria.location.lng + 0.12, precision: 0.001 })
+            lat: +faker.random.number({ min: +searchCriteria.location.lat - 0.06, max: +searchCriteria.location.lat + 0.06, precision: 0.001 }),
+            lon: +faker.random.number({ min: +searchCriteria.location.lng - 0.06, max: +searchCriteria.location.lng + 0.06, precision: 0.001 })
           },
           sqfeet: faker.random.number({ min: 700, max: 4000 }),
           thumbnailUrl:
