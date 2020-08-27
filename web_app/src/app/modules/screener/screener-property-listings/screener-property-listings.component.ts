@@ -9,7 +9,7 @@ export class ScreenerPropertyListingsComponent implements OnInit {
 
   @Input() listings;
   @Input() selectedId: number;
-  @Output() thumbnailClick: EventEmitter<number> = new EventEmitter<number>();
+  @Output() thumbnailHover: EventEmitter<number> = new EventEmitter<number>();
   
   placeholderItems: number[] = [1, 2, 3, 4, 5, 6]
 
@@ -18,8 +18,8 @@ export class ScreenerPropertyListingsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onThumbnailClick(selectedPropertyId: number) {
-    this.thumbnailClick.emit(selectedPropertyId);
+  onThumbnailHover(selectedPropertyId: number) {
+    this.thumbnailHover.emit(selectedPropertyId);
   }
 
 }
