@@ -3,6 +3,6 @@
   [usePanning]="true" (zoomChange)="zoomChanged($event)">
   <agm-marker *ngFor="let l of listings" [latitude]="l.address.lat" [longitude]="l.address.lon"
     (markerClick)="onMarkerClick(l.propertyId)"
-    [iconUrl]="l.propertyId === selectedListingId ? '' : 'https://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|4286f4'">
+    [iconUrl]="l.propertyId === selectedListingId ? 'assets/icons/red-circle-18x18.svg' : 'assets/icons/blue-circle-14x14.svg'">
   </agm-marker>
 </agm-map>
