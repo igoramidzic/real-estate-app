@@ -70,6 +70,7 @@ import { SpinnerComponent } from './components/loaders/spinner/spinner.component
         QuizNavbarComponent,
         PropertyThumbnailPlaceholderComponent,
         PropertyThumbnailComponent,
+        SpinnerComponent
     ],
 })
 export class SharedModule { }

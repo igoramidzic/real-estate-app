@@ -3,17 +3,25 @@
     <app-screener-map [listings]="listings" [searchLocation]="screenSearch?.location"
       (markerClick)="updateSelection($event)" [selectedListingId]="selectedListingId"></app-screener-map>
   </div>
-  <div id="right" class="d-flex flex-column">
-    <div class="loader-container" *ngIf="isLoading">
-      <!-- add icon here -->
-    </div>
-    <app-screener-filter class="d-block px-xl-5 p-lg-4 px-md-5 py-4 px-3" (onNewListings)="newListings($event)"
-      (screenSearchUpdated)="screenSearchUpdated($event)" [listings]="listings" (fetchingData)="updateLoadingStatus($event)">
-    </app-screener-filter>
-    <div style="overflow-y: auto;">
-      <app-screener-property-listings class="flex-fill d-block px-xl-5 p-lg-4 px-md-5  py-4 px-3" [listings]="listings"
-        [selectedId]="selectedListingId" (thumbnailClick)="updateSelection($event)">
-      </app-screener-property-listings>
+  <div id="right" class="py-4 d-flex flex-column">
+    <app-main-navbar class="d-block d-block px-xl-5 px-lg-4 px-md-5 px-3"></app-main-navbar>
+
+    <div class="d-flex flex-column" style="height: 98%">
+      <div *ngIf="isLoading">
+        <div class="loader-container">
+        </div>
+        <app-spinner class="d-block loading-icon"></app-spinner>
+      </div>
+
+      <app-screener-filter class="d-block px-xl-5 p-lg-4 px-md-5 py-4 px-3" (onNewListings)="newListings($event)"
+        (screenSearchUpdated)="screenSearchUpdated($event)" [listings]="listings"
+        (fetchingData)="updateLoadingStatus($event)">
+      </app-screener-filter>
+      <div style="overflow-y: auto;">
+        <app-screener-property-listings class="flex-fill d-block px-xl-5 p-lg-4 px-md-5  py-4 px-3"
+          [listings]="listings" [selectedId]="selectedListingId" (thumbnailClick)="updateSelection($event)">
+        </app-screener-property-listings>
+      </div>
     </div>
   </div>
 </div>
