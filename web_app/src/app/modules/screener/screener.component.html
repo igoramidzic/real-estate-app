@@ -19,7 +19,7 @@
       </app-screener-filter>
       <div style="overflow-y: auto;">
         <app-screener-property-listings class="flex-fill d-block px-xl-5 p-lg-4 px-md-5  py-4 px-3"
-          [listings]="listings" [selectedId]="selectedListingId" (thumbnailClick)="updateSelection($event)">
+          [listings]="listings" [selectedId]="selectedListingId" (thumbnailHover)="updateSelection($event)">
         </app-screener-property-listings>
       </div>
     </div>
