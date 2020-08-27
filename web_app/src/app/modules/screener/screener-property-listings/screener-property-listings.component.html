@@ -3,7 +3,8 @@
     <a [routerLink]="[]" [queryParams]="{ property: property.propertyId }" [queryParamsHandling]="'merge'"
       class="property-listing-item" *ngFor="let property of listings; let i = index;">
       <app-property-thumbnail [property]="property" [ngClass]="{ 'active': property.propertyId === selectedId }"
-        (mouseover)="onThumbnailHover(property.propertyId)" >
+        (mouseover)="onThumbnailHover(property.propertyId)"
+        (mouseleave)="onThumbnailHover(0)">
       </app-property-thumbnail>
     </a>
   </div>
