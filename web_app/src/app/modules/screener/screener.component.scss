@@ -8,8 +8,8 @@
 #right {
   box-shadow: 3px 0px 12px 0 rgba(0, 0, 0, 0.75);
   position: relative;
-  flex: 1;
-  max-width: 800px;
+  // flex: 1;
+  width: 800px;
 }
 
 .listings-container {
@@ -33,4 +33,32 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width: 1199px) {
+  #right {
+    width: 600px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  #right {
+    width: 450px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #right {
+    width: 360px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  #left {
+    display: none;
+  }
+
+  #right {
+    width: 100%;
+  }
 }

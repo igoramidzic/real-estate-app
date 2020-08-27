@@ -13,25 +13,25 @@
 @media only screen and (max-width: 1199px) {
   .grid {
     grid-template-columns: 1fr 1fr;
-    column-gap: 22px;
-    row-gap: 36px;
   }
 }
 
-@media only screen and (max-width: 991px) {
-  :root {
-    --font-size: 15px;
-  }
-}
+@media only screen and (max-width: 991px) {}
 
 @media only screen and (max-width: 767px) {
-  :root {
-    --font-size: 14px;
+  .grid {
+    grid-template-columns: 1fr;
   }
 }
 
 @media only screen and (max-width: 575px) {
-  :root {
-    // --font-size: 14px;
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 429px) {
+  .grid {
+    grid-template-columns: 1fr;
   }
 }
