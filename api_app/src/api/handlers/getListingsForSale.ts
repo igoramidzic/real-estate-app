@@ -7,6 +7,7 @@ import { EPropertyType } from '../core/enums/propertyTypes';
 import { EAmenities } from '../core/enums/amenities';
 import { ESaleType } from '../core/enums/saleTypes';
 import { EListingStatus, EPropertyStatus } from "../core/models/property";
+import { CitiesService } from '../../services/cities.services'
 
 
 const unirest = require("unirest");
@@ -95,51 +96,50 @@ export const getListingForSale = async (query: any): Promise<any[]> => {
     })
 };
 
-export const getListingForSaleFaker = (query: any): any[] => {
+export const getListingForSaleFaker = (query: any): Promise<any[]> => {
 
-    return [];
+    console.log(query);
 
-    // let limit = +query.limit;
+    return new Promise<any[]>(async (resolve, reject) => {
 
-    // let listings: any[] = [];
+        let location = CitiesService.getLocationFromCityAndStateCode(query.city, query.state_code);
+        let limit = +query.limit;
+        let listings: any[] = [];
 
-    // for (let i = 0; i < limit; i++) {
-    //     let listing = {
-    //         propertyId: faker.random.number(1000000000),
-    //         listingId: faker.random.number(1000000000),
-    //         price: faker.random.number(1000000),
-    //         list_date: faker.date.past(),
-    //         last_update: faker.date.past(),
-    //         year_built: faker.random.number({ min: 1950, max: 2020 }),
-    //         listing_status: ['active'],
-    //         // EListingStatus[<EListingStatus><unknown>(faker.helpers.replaceSymbolWithNumber(
-    //         //     faker.random.arrayElement(Object.getOwnPropertyNames(EListingStatus))
-    //         // ))],
-    //         beds: faker.random.number(4),
-    //         baths: faker.random.number(2),
-    //         baths_full: faker.random.number(3),
-    //         prop_status: ['for_sale'],
-    //         // EPropertyStatus[<EPropertyStatus><unknown>(faker.helpers.replaceSymbolWithNumber(
-    //         //     faker.random.arrayElement(Object.getOwnPropertyNames(EPropertyStatus))
-    //         // ))],
-    //         propertyType: EPropertyType[<EPropertyType><unknown>(faker.helpers.replaceSymbolWithNumber(
-    //             faker.random.arrayElement(Object.getOwnPropertyNames(EPropertyType))
-    //         ))],
-    //         address: {
-    //             line: faker.address.streetAddress(),
-    //             city: faker.address.city(),
-    //             state: faker.address.state(),
-    //             state_code: faker.address.stateAbbr(),
-    //             postal_code: faker.address.zipCode(),
-    //             neighborhood_name: faker.address.streetName(),
-    //             lat: +faker.random.number({ min: +searchCriteria.location.lat - 0.06, max: +searchCriteria.location.lat + 0.06, precision: 0.001 }),
-    //             lon: +faker.random.number({ min: +searchCriteria.location.lng - 0.06, max: +searchCriteria.location.lng + 0.06, precision: 0.001 })
-    //         },
-    //         sqfeet: faker.random.number({ min: 700, max: 4000 }),
-    //         thumbnailUrl: photos[faker.random.number({ min: 0, max: photos.length - 1 })],
-    //         // thumbnailUrl: 'https://picsum.photos/200/300?random=' + i
-    //     }
+        for (let i = 0; i < limit; i++) {
 
-    //     listings.push(listing);
-    // }
+            let listing = {
+                propertyId: faker.random.number(1000000000),
+                listingId: faker.random.number(1000000000),
+                price: faker.random.number(1000000),
+                list_date: faker.date.past(),
+                last_update: faker.date.past(),
+                year_built: faker.random.number({ min: 1950, max: 2020 }),
+                listing_status: faker.random.arrayElement(Object.values(EListingStatus)),
+                beds: faker.random.number(4),
+                baths: faker.random.number(2),
+                baths_full: faker.random.number(3),
+                prop_status: ['for_sale'],
+                propertyType: faker.random.arrayElement(Object.values(EPropertyType)),
+                address: {
+                    line: faker.address.streetAddress(),
+                    city: faker.address.city(),
+                    state: faker.address.state(),
+                    state_code: faker.address.stateAbbr(),
+                    postal_code: faker.address.zipCode(),
+                    neighborhood_name: faker.address.streetName(),
+                    lat: +faker.random.number({ min: location.lat - 0.06, max: location.lat + 0.06, precision: 0.001 }),
+                    lon: +faker.random.number({ min: location.lng - 0.06, max: location.lng + 0.06, precision: 0.001 })
+                },
+                sqfeet: faker.random.number({ min: 700, max: 4000 }),
+                thumbnailUrl: photos[faker.random.number({ min: 0, max: photos.length - 1 })],
+                // thumbnailUrl: 'https://picsum.photos/200/300?random=' + i
+            }
+
+            listings.push(listing);
+        }
+        resolve(listings);
+    });
+
+
 }

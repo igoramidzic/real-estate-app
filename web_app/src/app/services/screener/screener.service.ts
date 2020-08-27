@@ -6,7 +6,7 @@ import { IScreenSearch } from '../../core/models/screen-search';
 import { EListingStatus, IPropertyListing, EPropertyStatus } from '../../core/models/property';
 import { EPropertyType } from '../../core/enums/propertyTypes';
 import { random } from 'faker';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -33,55 +33,34 @@ export class ScreenerService {
   constructor(private http: HttpClient) { }
 
   getPropertyListingsApi(searchCriteria: IScreenSearch, limit: number = 10, offset = 0): Promise<IPropertyListing[]> {
-    return this.http.get<IPropertyListing[]>(environment.apiBase + "/properties/list-for-sale?city=Tampa&state_code=FL&limit=10&offset=0")
+
+    let params = new HttpParams()
+      .set("limit", limit.toString())
+      .set("offset", offset.toString())
+      .set("city", searchCriteria.location.city)
+      .set("state_code", searchCriteria.location.state)
+
+    return this.http.get<IPropertyListing[]>(environment.apiBase + "/properties/list-for-sale", { params: params })
       .toPromise();
   }
 
   getPropertyListings(searchCriteria: IScreenSearch, limit: number = 10, offset = 0): Promise<IPropertyListing[]> {
-    return new Promise((resolve, reject) => {
-      let listings: IPropertyListing[] = [];
 
-      for (let i = 0; i < limit; i++) {
-        let listing: IPropertyListing = {
-          propertyId: faker.random.number(1000000000),
-          listingId: faker.random.number(1000000000),
-          price: faker.random.number(1000000),
-          list_date: faker.date.past(),
-          last_update: faker.date.past(),
-          year_built: faker.random.number({ min: 1950, max: 2020 }),
-          listing_status: EListingStatus[<EListingStatus><unknown>(faker.helpers.replaceSymbolWithNumber(
-            faker.random.arrayElement(Object.getOwnPropertyNames(EListingStatus))
-          ))],
-          beds: faker.random.number(4),
-          baths: faker.random.number(2),
-          baths_full: faker.random.number(3),
-          prop_status: EPropertyStatus[<EPropertyStatus><unknown>(faker.helpers.replaceSymbolWithNumber(
-            faker.random.arrayElement(Object.getOwnPropertyNames(EPropertyStatus))
-          ))],
-          propertyType: EPropertyType[<EPropertyType><unknown>(faker.helpers.replaceSymbolWithNumber(
-            faker.random.arrayElement(Object.getOwnPropertyNames(EPropertyType))
-          ))],
-          address: {
-            line: faker.address.streetAddress(),
-            city: faker.address.city(),
-            state: faker.address.state(),
-            state_code: faker.address.stateAbbr(),
-            postal_code: faker.address.zipCode(),
-            neighborhood_name: faker.address.streetName(),
-            lat: +faker.random.number({ min: +searchCriteria.location.lat - 0.06, max: +searchCriteria.location.lat + 0.06, precision: 0.001 }),
-            lon: +faker.random.number({ min: +searchCriteria.location.lng - 0.06, max: +searchCriteria.location.lng + 0.06, precision: 0.001 })
-          },
-          sqfeet: faker.random.number({ min: 700, max: 4000 }),
-          thumbnailUrl: this.photos[faker.random.number({ min: 0, max: this.photos.length - 1 })],
-          // thumbnailUrl: 'https://picsum.photos/200/300?random=' + i
-        }
+    // required params
+    let params = new HttpParams()
+      .set("limit", limit.toString())
+      .set("offset", offset.toString())
+      .set("city", searchCriteria.location.city)
+      .set("state_code", searchCriteria.location.state)
+      .set("useFaker", "true");
 
-        listings.push(listing);
-      }
+    // optional filters
 
-      setTimeout(() => {
-        resolve(listings);
-      }, 200);
-    })
+    // for (const [key, value] of Object.entries(searchCriteria)) {
+    //   params.set(key,value.toString());
+    // }
+
+    return this.http.get<IPropertyListing[]>(environment.apiBase + "/properties/list-for-sale", { params: params })
+      .toPromise();
   }
 }
