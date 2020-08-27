@@ -3,10 +3,10 @@
     <app-screener-map [listings]="listings" [searchLocation]="screenSearch?.location"
       (markerClick)="updateSelection($event)" [selectedListingId]="selectedListingId"></app-screener-map>
   </div>
-  <div id="right" class="py-4 d-flex flex-column">
-    <app-main-navbar class="d-block d-block px-xl-5 px-lg-4 px-md-5 px-3"></app-main-navbar>
+  <div id="right" class="py-4 d-flex flex-column h-100">
+    <app-main-navbar class="px-xl-5 px-lg-4 px-md-5 px-3"></app-main-navbar>
 
-    <div class="d-flex flex-column" style="height: 98%">
+    <div class="listings-container d-flex flex-column" style="min-height: 0;">
       <div *ngIf="isLoading">
         <div class="loader-container">
         </div>
