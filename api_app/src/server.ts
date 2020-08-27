@@ -1,4 +1,5 @@
 import errorHandler from "errorhandler";
+import { CitiesService } from "./services/cities.services"
 
 import app from "./app";
 
@@ -18,5 +19,7 @@ const server = app.listen(app.get("port"), () => {
     );
     console.log("  Press CTRL-C to stop\n");
 });
+
+CitiesService.initialize();
 
 export default server;
