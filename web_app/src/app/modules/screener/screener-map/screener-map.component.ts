@@ -1,8 +1,10 @@
 import { Component, OnInit, OnChanges, ViewChild, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { AgmMap } from '@agm/core';
 import { IPropertyListing } from 'src/app/core/models/property';
+import {EPropertyType} from 'src/app/core/enums/propertyTypes';
 import { ISearchLocation } from 'src/app/core/models/location';
 import { CitiesService } from '../../../services/cities/cities.service';
+import {EIconUrl} from 'src/app/core/enums/iconUrls';
 
 @Component({
   selector: 'app-screener-map',
@@ -43,4 +45,18 @@ export class ScreenerMapComponent implements OnInit, OnChanges {
   zoomChanged(zoom): void {
     this.zoom = zoom;
   }
+
+  getIconUrlFromPropertyType(propType: EPropertyType) : string {
+    switch (propType) {
+      case EPropertyType.Apartment:
+        return EIconUrl.blueCircle;
+      case EPropertyType.House:
+        return EIconUrl.greenCircle;
+      case EPropertyType.Condo:
+        return EIconUrl.yellowCircle;
+      default:
+        break;
+    }
+  }
+
 }

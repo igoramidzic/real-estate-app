@@ -1,7 +1,7 @@
 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g filter="url(#filter0_d)">
-<circle cx="15" cy="11" r="9" fill="#FB786F"/>
-<circle cx="15" cy="11" r="10" stroke="black" stroke-width="2"/>
+<path d="M24 11C24 15.9706 19.9706 20 15 20C10.0294 20 6 15.9706 6 11C6 6.02944 10.0294 2 15 2C19.9706 2 24 6.02944 24 11Z" fill="#FF0000"/>
+<path d="M15 21C20.5228 21 25 16.5228 25 11C25 5.47715 20.5228 1 15 1C9.47715 1 5 5.47715 5 11C5 16.5228 9.47715 21 15 21Z" stroke="black" stroke-width="2"/>
 </g>
 <defs>
 <filter id="filter0_d" x="0" y="0" width="30" height="30" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
