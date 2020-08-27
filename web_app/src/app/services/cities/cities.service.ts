@@ -34,6 +34,12 @@ export class CitiesService {
           searchLocation.lng = +searchLocation.lng
         });
 
+        this.searchLocations = this.searchLocations.sort((a, b) => {
+          let fullString1 = (a.city + a.state).toLowerCase().replace(/\s/g, '');
+          let fullString2 = (b.city + b.state).toLowerCase().replace(/\s/g, '');
+          return fullString1 > fullString2 ? 1 : -1;
+        })
+
       } catch (e) {
         reject();
       }
@@ -49,22 +55,23 @@ export class CitiesService {
 
         let optionsToReturn: ISearchLocation[];
 
-        optionsToReturn = this.searchLocations.filter(d => {
-          let fullString1 = (d.city + ", " + d.state).toLowerCase().replace(/\s/g, '');
-          let fullString2 = (d.city + ", " + d.state_full_name).toLowerCase().replace(/\s/g, '');
 
-          if (fullString1.startsWith(prefix.toLowerCase().replace(/\s/g, '')) || fullString2.startsWith(prefix.toLowerCase().replace(/\s/g, '')))
+        optionsToReturn = this.searchLocations.filter(d => {
+          let fullString1 = (d.city + "," + d.state).toLowerCase().replace(/\s/g, '');
+          let fullString2 = (d.city + "," + d.state_full_name).toLowerCase().replace(/\s/g, '');
+          let state1 = (d.state).toLowerCase().replace(/\s/g, '');
+          let state2 = (d.state_full_name).toLowerCase().replace(/\s/g, '');
+
+          if (fullString1.startsWith(prefix.toLowerCase().replace(/\s/g, '')) ||
+            fullString2.startsWith(prefix.toLowerCase().replace(/\s/g, '')) ||
+            state1.startsWith(prefix.toLowerCase().replace(/\s/g, '')) ||
+            state2.startsWith(prefix.toLowerCase().replace(/\s/g, '')))
             return true;
 
           return false;
         })
 
-        optionsToReturn = optionsToReturn.sort((a, b) => {
-          let fullString1 = (a.city + ", " + a.state).toLowerCase().replace(/\s/g, '');
-          let fullString2 = (b.city + ", " + b.state_full_name).toLowerCase().replace(/\s/g, '');
-          return fullString1 > fullString2 ? 1 : -1;
-        }).splice(0, limit);
-        resolve(optionsToReturn);
+        resolve(optionsToReturn.splice(0, limit));
       } catch {
         reject();
       }
