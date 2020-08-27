@@ -18,6 +18,8 @@ export class ScreenerFilterComponent implements OnInit {
 
   screenSearch: IScreenSearch;
 
+  queryParamFilter: IQueryParamFilter;
+
   @Input() listings: IPropertyListing[];
   @Output() onNewListings: EventEmitter<IPropertyListing[]> = new EventEmitter();
   @Output() screenSearchUpdated: EventEmitter<IScreenSearch> = new EventEmitter();
@@ -28,6 +30,31 @@ export class ScreenerFilterComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
+      this.onQueryParamsChange(params);
+    })
+  }
+
+  // These are the query parameters that we care if change. Other's we can ignore.
+  generateQueryParamFilterObject(params): IQueryParamFilter {
+    let queryParamFilter: IQueryParamFilter = {};
+
+    queryParamFilter.location = params['location'];
+    queryParamFilter.priceMin = params['priceMin'];
+    queryParamFilter.priceMax = params['priceMax'];
+    queryParamFilter.beds = params['beds'];
+    queryParamFilter.propertyType = params['propertyType'];
+
+    return queryParamFilter;
+  }
+
+  queryParamFilterObjectsAreDifferent(qpf1: IQueryParamFilter, qpf2: IQueryParamFilter): boolean {
+    return JSON.stringify(qpf1) != JSON.stringify(qpf2);
+  }
+
+  onQueryParamsChange(params: Params): void {
+    let newQueryParamFilter: IQueryParamFilter = this.generateQueryParamFilterObject(params);
+
+    if (this.queryParamFilterObjectsAreDifferent(newQueryParamFilter, this.queryParamFilter)) {
       this.initializeScreenSearchFromQueryParams(params)
         .then(() => {
           this.search();
@@ -35,7 +62,11 @@ export class ScreenerFilterComponent implements OnInit {
         .catch((e) => {
           console.log(e)
         })
-    })
+    } else {
+
+    }
+
+    this.queryParamFilter = newQueryParamFilter;
   }
 
   async initializeScreenSearchFromQueryParams(params: Params) {
@@ -97,4 +128,12 @@ export class ScreenerFilterComponent implements OnInit {
     const { city, state } = searchLocation;
     return city + ',' + state;
   }
+}
+
+interface IQueryParamFilter {
+  location?: string;
+  priceMin?: string;
+  priceMax?: string;
+  beds?: string;
+  propertyType?: string;
 }

@@ -11,6 +11,10 @@ import { ScreenerPropertyListingsComponent } from './screener-property-listings/
 import { InitialCityLocationChooserComponent } from './screener-filter/initial-city-location-chooser/initial-city-location-chooser.component';
 import { ScreenerMapComponent } from './screener-map/screener-map.component';
 import { SearchLocationFilterComponent } from './screener-filter/filters/search-location-filter/search-location-filter.component';
+import { PriceFilterComponent } from './screener-filter/filters/price-filter/price-filter.component';
+import { BedsFilterComponent } from './screener-filter/filters/beds-filter/beds-filter.component';
+import { PropertyTypeFilterComponent } from './screener-filter/filters/property-type-filter/property-type-filter.component';
+import { MoreFiltersComponent } from './screener-filter/filters/more-filters/more-filters.component';
 
 @NgModule({
     declarations: [
@@ -19,7 +23,11 @@ import { SearchLocationFilterComponent } from './screener-filter/filters/search-
         ScreenerPropertyListingsComponent,
         InitialCityLocationChooserComponent,
         ScreenerMapComponent,
-        SearchLocationFilterComponent
+        SearchLocationFilterComponent,
+        PriceFilterComponent,
+        BedsFilterComponent,
+        PropertyTypeFilterComponent,
+        MoreFiltersComponent
     ],
     imports: [
         SharedModule,

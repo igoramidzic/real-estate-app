@@ -72,8 +72,8 @@ export class ScreenerService {
             lon: +faker.random.number({ min: +searchCriteria.location.lng - 0.06, max: +searchCriteria.location.lng + 0.06, precision: 0.001 })
           },
           sqfeet: faker.random.number({ min: 700, max: 4000 }),
-          thumbnailUrl:
-            this.photos[faker.random.number({ min: 0, max: this.photos.length - 1 })],
+          thumbnailUrl: this.photos[faker.random.number({ min: 0, max: this.photos.length - 1 })],
+          // thumbnailUrl: 'https://picsum.photos/200/300?random=' + i
         }
 
         listings.push(listing);

@@ -2,6 +2,16 @@
   (searchLocationChanged)="searchLocationChanged($event)">
 </app-initial-city-location-chooser>
 
-<app-search-location-filter *ngIf="screenSearch?.location" [searchLocation]="screenSearch?.location"
-  (searchLocationChosen)="searchLocationChanged($event)" [listings]="listings">
-</app-search-location-filter>
+<div *ngIf="screenSearch?.location">
+  <app-search-location-filter [searchLocation]="screenSearch?.location"
+    (searchLocationChosen)="searchLocationChanged($event)" [listings]="listings">
+  </app-search-location-filter>
+
+  <div class="d-flex align-items-center mt-4">
+    <app-price-filter class="d-block mr-2"></app-price-filter>
+    <app-beds-filter class="d-block mr-2"></app-beds-filter>
+    <app-property-type-filter class="d-block mr-2"></app-property-type-filter>
+    <app-more-filters class="d-block mr-2"></app-more-filters>
+  </div>
+
+</div>
