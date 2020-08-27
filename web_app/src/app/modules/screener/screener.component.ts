@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IPropertyListing} from '../../core/models/property';
+import { IPropertyListing } from '../../core/models/property';
 import { ISearchLocation } from '../../core/models/location';
-import {IScreenSearch} from '../../core/models/screen-search'
+import { IScreenSearch } from '../../core/models/screen-search'
 import { AgmMap } from '@agm/core';
 import { EPropertyType } from 'src/app/core/enums/propertyTypes';
 import { date } from 'faker';
@@ -18,6 +18,8 @@ export class ScreenerComponent implements OnInit {
   selectedListingId: number = 0;
   isLoading: boolean = false;
 
+  showFullFilterWindow: boolean;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -31,12 +33,20 @@ export class ScreenerComponent implements OnInit {
     this.screenSearch = screenSearch;
   }
 
-  updateSelection(newSelectedListingId : number) {
+  updateSelection(newSelectedListingId: number) {
     this.selectedListingId = newSelectedListingId;
   }
 
   updateLoadingStatus(isLoading: boolean) {
     this.isLoading = isLoading;
+  }
+
+  onOpenFullFilterWindow(): void {
+    this.showFullFilterWindow = true;
+  }
+
+  onCloseFullFilterWindow(): void {
+    this.showFullFilterWindow = false;
   }
 }
 

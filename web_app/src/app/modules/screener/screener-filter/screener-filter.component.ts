@@ -17,13 +17,16 @@ import { EBedroomCount } from 'src/app/core/enums/bedroomCount';
 export class ScreenerFilterComponent implements OnInit {
 
   screenSearch: IScreenSearch;
+  showFullFilterWindow: boolean;
 
   queryParamFilter: IQueryParamFilter;
 
   @Input() listings: IPropertyListing[];
   @Output() onNewListings: EventEmitter<IPropertyListing[]> = new EventEmitter();
   @Output() screenSearchUpdated: EventEmitter<IScreenSearch> = new EventEmitter();
-  @Output() fetchingData: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() fetchingData: EventEmitter<boolean> = new EventEmitter();
+  @Output() fullFilterWindowOpened: EventEmitter<boolean> = new EventEmitter();
+  @Output() fullFilterWindowClosed: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private screenerService: ScreenerService, private route: ActivatedRoute,
     private router: Router, private citiesService: CitiesService) { }
@@ -127,6 +130,16 @@ export class ScreenerFilterComponent implements OnInit {
   getFullLocationString(searchLocation: ISearchLocation): string {
     const { city, state } = searchLocation;
     return city + ',' + state;
+  }
+
+  toggleFullFilterWindow(): void {
+    this.showFullFilterWindow = !this.showFullFilterWindow;
+    this.showFullFilterWindow ? this.fullFilterWindowOpened.emit(true) : this.fullFilterWindowClosed.emit(true);
+  }
+
+  closeFullFilterWindow(): void {
+    this.showFullFilterWindow = false;
+    this.fullFilterWindowClosed.emit(true);
   }
 }
 
