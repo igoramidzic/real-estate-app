@@ -55,12 +55,24 @@ export class ScreenerComponent implements OnInit {
     this.showFullFilterWindow = false;
   }
 
+  // call to api, if id dont exist from api call, remove it from url
   getPropertyDetailsFromUrl(params: Params): void {
-    this.selectedPropertyDetails = params["property"] ?
-      {
-        propertyId: params["property"]
-      } :
-      undefined;
+
+    this.isLoading = true;
+
+    // simulate api response time
+    setTimeout(() => {
+      this.selectedPropertyDetails = params["property"] ?
+        {
+          propertyId: params["property"]
+        } :
+        undefined;
+
+      this.isLoading = false;
+    }, 350);
+
+
+
   }
 
   resetPropertyDetails(): void {
