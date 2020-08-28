@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IPropertyListing } from '../../core/models/property';
+import { IPropertyListing, IPropertyDetails } from '../../core/models/property';
 import { ISearchLocation } from '../../core/models/location';
 import { IScreenSearch } from '../../core/models/screen-search'
 import { AgmMap } from '@agm/core';
 import { EPropertyType } from 'src/app/core/enums/propertyTypes';
 import { date } from 'faker';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-screener',
@@ -18,11 +19,16 @@ export class ScreenerComponent implements OnInit {
   selectedListingId: number = 0;
   isLoading: boolean = false;
 
+  selectedPropertyDetails: IPropertyDetails;
+
   showFullFilterWindow: boolean;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.getPropertyDetailsFromUrl(params)
+    });
   }
 
   newListings(listings: IPropertyListing[]): void {
@@ -48,6 +54,38 @@ export class ScreenerComponent implements OnInit {
   onCloseFullFilterWindow(): void {
     this.showFullFilterWindow = false;
   }
+
+  getPropertyDetailsFromUrl(params: Params): void {
+    this.selectedPropertyDetails = params["property"] ?
+      {
+        propertyId: params["property"]
+      } :
+      undefined;
+  }
+
+  resetPropertyDetails(): void {
+    this.route.queryParams
+      .subscribe(params => this.removePropertyFromQueryParams(params))
+      .unsubscribe();
+  }
+
+  removePropertyFromQueryParams(params: Params): void {
+    // update url without property query and without reloading
+    this.router.navigate(
+      [],
+      {
+        relativeTo: this.route,
+        queryParams: {
+          location: params['location'],
+          priceMin: params['priceMin'],
+          priceMax: params['priceMax'],
+          beds: params['beds'],
+          property: undefined
+        },
+        queryParamsHandling: 'merge'
+      });
+  }
+
 }
 
 

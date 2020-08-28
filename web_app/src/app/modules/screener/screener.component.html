@@ -13,6 +13,10 @@
         <app-spinner class="d-block loading-icon"></app-spinner>
       </div>
 
+      <app-screener-property-details *ngIf="selectedPropertyDetails" (closeIconClick)="resetPropertyDetails()"
+        [propertyDetails]="selectedPropertyDetails">
+      </app-screener-property-details>
+
       <app-screener-filter class="regular-filter-window d-block px-xl-5 p-lg-4 px-md-4 py-4 px-3"
         [ngClass]="{ 'full-filter-window': showFullFilterWindow }" (onNewListings)="newListings($event)"
         (screenSearchUpdated)="screenSearchUpdated($event)" (fullFilterWindowOpened)="onOpenFullFilterWindow()"
