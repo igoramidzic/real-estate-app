@@ -2,7 +2,7 @@ import { EPropertyType } from '../enums/propertyTypes';
 import { IPropertyAddress } from './address';
 
 export interface IPropertyListing {
-    propertyId: number;
+    propertyId: string;
     listingId: number;
     price: number
     propertyType: EPropertyType;
@@ -21,7 +21,7 @@ export interface IPropertyListing {
 
 // add more stuff, may extend IPropertyLisings
 export interface IPropertyDetails {
-    propertyId: number;
+    propertyId: string;
     // listingId: number;
     // price: number
     // propertyType: EPropertyType;

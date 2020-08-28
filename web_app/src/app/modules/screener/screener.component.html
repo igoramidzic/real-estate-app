@@ -15,8 +15,8 @@
         <app-spinner class="d-block loading-icon"></app-spinner>
       </div>
 
-      <app-screener-property-details *ngIf="selectedPropertyDetails" (closeIconClick)="resetPropertyDetails()"
-        [propertyDetails]="selectedPropertyDetails">
+      <app-screener-property-details class="px-xl-5 px-lg-4 px-md-4 px-3" *ngIf="showPropertyDetailsWindow"
+        (closeIconClick)="resetPropertyDetails()" [propertyId]="selectedPropertyId">
       </app-screener-property-details>
 
       <app-screener-filter class="regular-filter-window d-block px-xl-5 p-lg-4 px-md-4 py-4 px-3"

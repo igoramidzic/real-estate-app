@@ -1,6 +1,14 @@
-<div class="property-details-container">
-  <button (click)="onCloseIconClick()">CLICK MEEEEEEEE</button>
-  <h1>
-    Property Details for: {{propertyDetails.propertyId}}
-  </h1>
+<div class="property-details-container py-4 px-xl-5 px-lg-4 px-md-4 px-3">
+  <div *ngIf="!isLoading">
+    <button (click)="onCloseIconClick()">CLICK MEEEEEEEE</button>
+    <h1>
+      Property Details for: {{ propertyDetails.propertyId }}
+    </h1>
+  </div>
+
+  <div *ngIf="isLoading">
+    <div class="loader-container">
+    </div>
+    <app-spinner class="d-block loading-icon"></app-spinner>
+  </div>
 </div>

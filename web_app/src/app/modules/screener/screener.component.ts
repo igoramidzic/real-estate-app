@@ -14,7 +14,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 })
 export class ScreenerComponent implements OnInit {
 
-  listings: IPropertyListing[] = [];
+  listings: IPropertyListing[];
   screenSearch: IScreenSearch;
   selectedListingId: number = 0;
   isLoading: boolean = false;
@@ -22,12 +22,20 @@ export class ScreenerComponent implements OnInit {
   selectedPropertyDetails: IPropertyDetails;
 
   showFullFilterWindow: boolean;
+  showPropertyDetailsWindow: boolean;
+  selectedPropertyId: string;
 
   constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.getPropertyDetailsFromUrl(params)
+      if (params['property']) {
+        this.showPropertyDetailsWindow = true;
+        this.selectedPropertyId = params['property'];
+      } else {
+        this.showPropertyDetailsWindow = false;
+        this.selectedPropertyId = null;
+      }
     });
   }
 
@@ -53,26 +61,6 @@ export class ScreenerComponent implements OnInit {
 
   onCloseFullFilterWindow(): void {
     this.showFullFilterWindow = false;
-  }
-
-  // call to api, if id dont exist from api call, remove it from url
-  getPropertyDetailsFromUrl(params: Params): void {
-
-    this.isLoading = true;
-
-    // simulate api response time
-    setTimeout(() => {
-      this.selectedPropertyDetails = params["property"] ?
-        {
-          propertyId: params["property"]
-        } :
-        undefined;
-
-      this.isLoading = false;
-      this.updateSelection(+params["property"]);
-    }, 350);
-
-
   }
 
   resetPropertyDetails(): void {
