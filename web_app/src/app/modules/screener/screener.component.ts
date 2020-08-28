@@ -69,8 +69,8 @@ export class ScreenerComponent implements OnInit {
         undefined;
 
       this.isLoading = false;
+      this.updateSelection(+params["property"]);
     }, 350);
-
 
 
   }
@@ -88,10 +88,6 @@ export class ScreenerComponent implements OnInit {
       {
         relativeTo: this.route,
         queryParams: {
-          location: params['location'],
-          priceMin: params['priceMin'],
-          priceMax: params['priceMax'],
-          beds: params['beds'],
           property: undefined
         },
         queryParamsHandling: 'merge'

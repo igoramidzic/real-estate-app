@@ -1,9 +1,12 @@
 <agm-map #map [latitude]="+searchLocation?.lat || citiesService.centerUSCoords.lat"
   [longitude]="+searchLocation?.lng || citiesService.centerUSCoords.lng" [zoom]='zoom' [minZoom]='minZoom'
   [usePanning]="true" (zoomChange)="zoomChanged($event)">
-  <agm-marker *ngFor="let l of listings" [latitude]="l.address.lat" [longitude]="l.address.lon"
-    (markerClick)="onMarkerClick(l.propertyId)"
-    [iconUrl]="l.propertyId === selectedListingId ? 'assets/icons/red-circle-18x18.svg' : getIconUrlFromPropertyType(l.propertyType)">
-  </agm-marker>
+  <div *ngFor="let l of listings">
+    <agm-marker *ngIf="!showSelectedMarkerOnly || (showSelectedMarkerOnly && l.propertyId == selectedListingId) "
+      [latitude]="l.address.lat" [longitude]="l.address.lon" (markerClick)="onMarkerClick(l.propertyId)"
+      [iconUrl]="l.propertyId == selectedListingId ? 'assets/icons/red-circle-18x18.svg' : getIconUrlFromPropertyType(l.propertyType)">
+    </agm-marker>
+  </div>
+
 
 </agm-map>

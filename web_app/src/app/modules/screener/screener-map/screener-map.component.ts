@@ -1,10 +1,10 @@
 import { Component, OnInit, OnChanges, ViewChild, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { AgmMap } from '@agm/core';
 import { IPropertyListing } from 'src/app/core/models/property';
-import {EPropertyType} from 'src/app/core/enums/propertyTypes';
+import { EPropertyType } from 'src/app/core/enums/propertyTypes';
 import { ISearchLocation } from 'src/app/core/models/location';
 import { CitiesService } from '../../../services/cities/cities.service';
-import {EIconUrl} from 'src/app/core/enums/iconUrls';
+import { EIconUrl } from 'src/app/core/enums/iconUrls';
 
 @Component({
   selector: 'app-screener-map',
@@ -16,6 +16,7 @@ export class ScreenerMapComponent implements OnInit, OnChanges {
   @Input() searchLocation: ISearchLocation;
   @Input() listings: IPropertyListing[];
   @Input() selectedListingId: number;
+  @Input() showSelectedMarkerOnly: boolean = false;
   @Output() markerClick: EventEmitter<number> = new EventEmitter<number>();
 
   @ViewChild('map') map: AgmMap;
@@ -27,6 +28,7 @@ export class ScreenerMapComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.listings)
     if (changes.searchLocation && changes.searchLocation.previousValue != changes.searchLocation.currentValue) {
       setTimeout(() => {
         this.zoom = 12;
@@ -46,7 +48,7 @@ export class ScreenerMapComponent implements OnInit, OnChanges {
     this.zoom = zoom;
   }
 
-  getIconUrlFromPropertyType(propType: EPropertyType) : string {
+  getIconUrlFromPropertyType(propType: EPropertyType): string {
     switch (propType) {
       case EPropertyType.Apartment:
         return EIconUrl.blueCircle;
