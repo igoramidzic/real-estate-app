@@ -98,6 +98,19 @@ export class ScreenerComponent implements OnInit {
       });
   }
 
+  getPropertyFromPropertyDetails(): IPropertyListing {
+    if (this.selectedPropertyDetails) {
+
+      let matchingListing = this.listings.filter(x => x.propertyId === this.selectedPropertyDetails.propertyId);
+
+      if (matchingListing.length > 0) {
+        return matchingListing[0];
+      }
+    }
+
+    return undefined;
+  }
+
 }
 
 

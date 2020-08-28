@@ -1,7 +1,9 @@
 <div class="d-flex h-100">
   <div id="left">
     <app-screener-map [listings]="listings" [searchLocation]="screenSearch?.location"
-      (markerClick)="updateSelection($event)" [selectedListingId]="selectedListingId"></app-screener-map>
+      (markerClick)="updateSelection($event)"
+      [selectedListingId]="selectedPropertyDetails ? selectedPropertyDetails.propertyId : selectedListingId">
+    </app-screener-map>
   </div>
   <div id="right" class="pt-4 d-flex flex-column h-100">
     <app-main-navbar class="px-xl-5 px-lg-4 px-md-4 px-3"></app-main-navbar>
