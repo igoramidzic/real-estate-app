@@ -27,6 +27,11 @@ export class ScreenerPropertyDetailsComponent implements OnInit {
     this.isLoading = true;
     try {
       this.propertyDetails = await this.screenerService.getListingDetails(this.propertyId);
+
+      // Check if the response was successful but also returned a null property. Rare case.
+      if (!this.propertyDetails) {
+        throw new Error('Property not found.');
+      }
     } catch (e) {
       this.propertyNotFound = true;
     }

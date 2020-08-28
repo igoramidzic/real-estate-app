@@ -54,23 +54,6 @@ export class ScreenerFilterComponent implements OnInit {
     return JSON.stringify(qpf1) != JSON.stringify(qpf2);
   }
 
-  // removePropertyFromQueryParams(params: Params): void {
-  //   // update url without property query and without reloading
-  //   this.router.navigate(
-  //     [],
-  //     {
-  //       relativeTo: this.route,
-  //       queryParams: {
-  //         location: params['location'],
-  //         priceMin: params['priceMin'],
-  //         priceMax: params['priceMax'],
-  //         beds: params['beds'],
-  //         property: undefined
-  //       },
-  //       queryParamsHandling: 'merge'
-  //     });
-  // }
-
   onQueryParamsChange(params: Params): void {
 
     let newQueryParamFilter: IQueryParamFilter = this.generateQueryParamFilterObject(params);

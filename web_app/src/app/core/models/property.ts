@@ -22,20 +22,20 @@ export interface IPropertyListing {
 // add more stuff, may extend IPropertyLisings
 export interface IPropertyDetails {
     propertyId: string;
-    // listingId: number;
-    // price: number
-    // propertyType: EPropertyType;
-    // list_date?: Date;
-    // last_update: Date;
-    // year_built?: number;
-    // listing_status?: EListingStatus;
-    // beds: number;
-    // baths_full: number;
-    // baths: number;
-    // prop_status: EPropertyStatus;
-    // address: IPropertyAddress;
-    // thumbnailUrl: string;
-    // sqfeet: number;
+    listingId: number;
+    price: number
+    propertyType: EPropertyType;
+    list_date?: Date;
+    last_update?: Date;
+    year_built?: number;
+    listing_status?: EListingStatus;
+    beds: number;
+    baths_full: number;
+    baths: number;
+    prop_status: EPropertyStatus;
+    address: IPropertyAddress;
+    photos?: string[];
+    sqfeet: number;
 }
 
 export enum EListingStatus {

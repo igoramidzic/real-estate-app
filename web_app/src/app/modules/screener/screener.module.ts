@@ -16,6 +16,7 @@ import { BedsFilterComponent } from './screener-filter/filters/beds-filter/beds-
 import { PropertyTypeFilterComponent } from './screener-filter/filters/property-type-filter/property-type-filter.component';
 import { MoreFiltersComponent } from './screener-filter/filters/more-filters/more-filters.component';
 import { ScreenerPropertyDetailsComponent } from './screener-property-details/screener-property-details.component';
+import { PropertyDetailsAddressComponent } from './screener-property-details/property-details-address/property-details-address.component';
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import { ScreenerPropertyDetailsComponent } from './screener-property-details/sc
         BedsFilterComponent,
         PropertyTypeFilterComponent,
         MoreFiltersComponent,
-        ScreenerPropertyDetailsComponent
+        ScreenerPropertyDetailsComponent,
+        PropertyDetailsAddressComponent
     ],
     imports: [
         SharedModule,
