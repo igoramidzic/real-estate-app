@@ -43,22 +43,6 @@ router.get("/location-from-city-state/:cityState", async (req: Request, res: Res
     }
 });
 
-router.get("/location-from-city-state/:cityState", async (req: Request, res: Response) => {
-
-    const { cityState } = req.params;
-    try {
-
-        let location = CitiesService.getSearchLocationFromCityState(cityState);
-        if (location === undefined) {
-            res.status(400).send('Location not found.');
-        }
-        res.status(200).json(location);
-
-    } catch (error) {
-        res.status(400);
-    }
-});
-
 router.get("/random-location", async (req: Request, res: Response) => {
     try {
         res.status(200).json(CitiesService.getRandomPopularCity());

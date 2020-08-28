@@ -21,7 +21,6 @@ export class CitiesService {
   }
 
   getCitiesById(id: string): Promise<ISearchLocation> {
-
     return this.http.get<ISearchLocation>(environment.apiBase + `/cities/cities-from-id/${id}`)
       .toPromise();
   }

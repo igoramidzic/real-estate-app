@@ -1,12 +1,6 @@
-import request from "request"
-import { Query } from "mongoose";
-import { resolve } from "bluebird";
-import { rest, property } from "lodash";
 import * as faker from 'faker';
 import { EPropertyType } from '../core/enums/propertyTypes';
-import { EAmenities } from '../core/enums/amenities';
-import { ESaleType } from '../core/enums/saleTypes';
-import { EListingStatus, EPropertyStatus } from "../core/models/property";
+import { EListingStatus, EPropertyStatus, IPropertyListing } from "../core/models/property";
 import { CitiesService } from '../../services/cities.services'
 
 
@@ -39,9 +33,9 @@ const consolidatePropertyType = (propertyType: string): string => {
         return "other"
 }
 
-export const getListingForSale = async (query: any): Promise<any[]> => {
+export const getListingForSale = async (query: any): Promise<IPropertyListing[]> => {
 
-    return new Promise<any[]>(async (resolve, reject) => {
+    return new Promise<IPropertyListing[]>(async (resolve, reject) => {
 
         let realtorReq = unirest("GET", "https://realtor.p.rapidapi.com/properties/v2/list-for-sale");
 
@@ -96,15 +90,15 @@ export const getListingForSale = async (query: any): Promise<any[]> => {
     })
 };
 
-export const getListingForSaleFaker = (query: any): Promise<any[]> => {
+export const getListingForSaleFaker = (query: any): Promise<IPropertyListing[]> => {
 
     console.log(query);
 
-    return new Promise<any[]>(async (resolve, reject) => {
+    return new Promise<IPropertyListing[]>(async (resolve, reject) => {
 
         let location = CitiesService.getLocationFromCityAndStateCode(query.city, query.state_code);
         let limit = +query.limit;
-        let listings: any[] = [];
+        let listings: IPropertyListing[] = [];
 
         for (let i = 0; i < limit; i++) {
 
@@ -119,7 +113,7 @@ export const getListingForSaleFaker = (query: any): Promise<any[]> => {
                 beds: faker.random.number(4),
                 baths: faker.random.number(2),
                 baths_full: faker.random.number(3),
-                prop_status: ['for_sale'],
+                prop_status: faker.random.arrayElement(Object.values(EPropertyStatus)),
                 propertyType: faker.random.arrayElement(Object.values(EPropertyType)),
                 address: {
                     line: faker.address.streetAddress(),
