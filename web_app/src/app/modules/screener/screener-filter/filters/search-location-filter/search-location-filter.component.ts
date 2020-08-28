@@ -33,14 +33,14 @@ export class SearchLocationFilterComponent implements OnInit {
     this.citySearchPrefix = '';
   }
 
-  // queryCitiesAfterTimerExpires(): void {
-  //   clearTimeout(this.timer);
+  queryCitiesAfterTimerExpires(): void {
+    clearTimeout(this.timer);
 
-  //   // Make a new timeout set to go off in 500ms
-  //   this.timer = setTimeout(() => {
-  //     this.getCities()
-  //   }, 500);
-  // }
+    // Make a new timeout set to go off in 500ms
+    this.timer = setTimeout(() => {
+      this.getCities()
+    }, 300);
+  }
 
   async getCities(): Promise<void> {
     if (this.citySearchPrefix == "") {
