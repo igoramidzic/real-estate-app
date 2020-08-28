@@ -2,8 +2,8 @@
   <h2 class="mb-0 mr-2 font-weight-normal results-text">
     {{ listings?.length || 0 }} Results <span class="hint-color">in</span></h2>
   <div class="d-flex">
-    <input type="text" class="search-location-text-input" [(ngModel)]="citySearchPrefix"
-      (ngModelChange)="queryCitiesAfterTimerExpires()" [placeholder]="getFullStringOfLocation(searchLocation)">
+    <input type="text" class="search-location-text-input" [(ngModel)]="citySearchPrefix" (ngModelChange)="getCities()"
+      [placeholder]="getFullStringOfLocation(searchLocation)">
   </div>
   <button class="ml-2 btn btn-sm" *ngIf="showCancelButton" (click)="resetForm()">Cancel</button>
 </div>

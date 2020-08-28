@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { ISearchLocation } from 'src/app/core/models/location';
 import * as csv from 'csvtojson';
 import { ICoordinates } from '../../core/models/coordinates';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,15 @@ export class CitiesService {
   }
 
   getCitiesFromPrefix(prefix: string, limit = 5): Promise<ISearchLocation[]> {
+
+    let params = new HttpParams()
+      .set("prefix", prefix)
+      .set("limit", limit.toString())
+
+    return this.http.get<ISearchLocation[]>(environment.apiBase + "/cities/cities-from-prefix", { params: params })
+      .toPromise();
+
+
     prefix = prefix.trim().replace(/\s/g, '');
     return new Promise(async (resolve, reject) => {
       try {
