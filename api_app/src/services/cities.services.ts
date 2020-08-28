@@ -28,7 +28,7 @@ export class CitiesService {
         // console.log(this.cities_csv)
     }
 
-    // use by faker
+    // used by faker
     static getLocationFromCityAndStateCode(city: string, stateCode: string): any {
 
         let locationToReturn: any;
@@ -65,6 +65,34 @@ export class CitiesService {
             return false;
 
         }).splice(0, limit);
+    }
+
+    static getCityFromId(id: string) {
+        let searchLocation: ISearchLocation = this.cityLocations.find(x => x.id == id);
+        return searchLocation ? searchLocation : undefined;
+    }
+
+    static getSearchLocationFromCityState(cityState: string): ISearchLocation {
+
+        cityState = cityState.trim().replace(/\s/g, '');
+
+        let searchLocation: ISearchLocation = this.cityLocations.find(d => {
+            let fullString1 = (d.city + ", " + d.state).toLowerCase().replace(/\s/g, '');
+            let fullString2 = (d.city + ", " + d.state_full_name).toLowerCase().replace(/\s/g, '');
+
+            if (fullString1.startsWith(cityState.toLowerCase().replace(/\s/g, '')) || fullString2.startsWith(cityState.toLowerCase().replace(/\s/g, '')))
+                return true;
+
+            return false;
+        });
+
+        if (!searchLocation) return undefined;
+
+        return searchLocation;
+    }
+
+    static getRandomPopularCity(): ISearchLocation {
+        return this.cityLocations[Math.floor(Math.random() * this.cityLocations.length)]
     }
 }
 
