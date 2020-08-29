@@ -22,6 +22,7 @@ import { QuizNavbarComponent } from './components/navbars/quiz-navbar/quiz-navba
 import { PropertyThumbnailPlaceholderComponent } from './components/properties/property-thumbnail-placeholder/property-thumbnail-placeholder.component';
 import { PropertyThumbnailComponent } from './components/properties/property-thumbnail/property-thumbnail.component';
 import { SpinnerComponent } from './components/loaders/spinner/spinner.component';
+import { SortByFormComponent } from './components/forms/sort-by-form/sort-by-form.component';
 
 @NgModule({
     imports: [
@@ -49,6 +50,7 @@ import { SpinnerComponent } from './components/loaders/spinner/spinner.component
         PropertyThumbnailPlaceholderComponent,
         PropertyThumbnailComponent,
         SpinnerComponent,
+        SortByFormComponent,
     ],
     exports: [
         CommonModule,
@@ -70,7 +72,8 @@ import { SpinnerComponent } from './components/loaders/spinner/spinner.component
         QuizNavbarComponent,
         PropertyThumbnailPlaceholderComponent,
         PropertyThumbnailComponent,
-        SpinnerComponent
+        SpinnerComponent,
+        SortByFormComponent
     ],
 })
 export class SharedModule { }
