@@ -16,7 +16,7 @@ export class ScreenerComponent implements OnInit {
 
   listings: IPropertyListing[];
   screenSearch: IScreenSearch;
-  selectedListingId: number = 0;
+  selectedPropertyForMarker: string;
   isLoading: boolean = false;
 
   selectedPropertyDetails: IPropertyDetails;
@@ -32,6 +32,7 @@ export class ScreenerComponent implements OnInit {
       if (params['property']) {
         this.showPropertyDetailsWindow = true;
         this.selectedPropertyId = params['property'];
+        this.updateSelection(this.selectedPropertyId);
       } else {
         this.showPropertyDetailsWindow = false;
         this.selectedPropertyId = null;
@@ -47,8 +48,8 @@ export class ScreenerComponent implements OnInit {
     this.screenSearch = screenSearch;
   }
 
-  updateSelection(newSelectedListingId: number) {
-    this.selectedListingId = newSelectedListingId;
+  updateSelection(newSelectedListingId: string) {
+    this.selectedPropertyForMarker = newSelectedListingId;
   }
 
   updateLoadingStatus(isLoading: boolean) {

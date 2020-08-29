@@ -1,7 +1,7 @@
 <div class="d-flex h-100">
   <div id="left">
     <app-screener-map [listings]="listings" [searchLocation]="screenSearch?.location"
-      (markerClick)="updateSelection($event)" [selectedListingId]="selectedListingId"
+      (markerClick)="updateSelection($event)" [selectedListingId]="selectedPropertyForMarker"
       [propertyDetailsIsShown]="showPropertyDetailsWindow">
     </app-screener-map>
   </div>
@@ -27,7 +27,7 @@
       </app-screener-filter>
       <div style="overflow-y: auto;">
         <app-screener-property-listings class="flex-fill d-block px-xl-5 p-lg-4 px-md-4 py-4 px-3" [listings]="listings"
-          [selectedId]="selectedListingId" (thumbnailHover)="updateSelection($event)">
+          [selectedId]="selectedPropertyForMarker" (thumbnailHover)="updateSelection($event)">
         </app-screener-property-listings>
       </div>
     </div>

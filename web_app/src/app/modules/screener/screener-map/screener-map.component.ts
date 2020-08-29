@@ -15,7 +15,7 @@ export class ScreenerMapComponent implements OnInit, OnChanges {
 
   @Input() searchLocation: ISearchLocation;
   @Input() listings: IPropertyListing[];
-  @Input() selectedListingId: number;
+  @Input() selectedListingId: string;
   @Input() propertyDetailsIsShown: boolean = false;
   @Output() markerClick: EventEmitter<number> = new EventEmitter<number>();
 
