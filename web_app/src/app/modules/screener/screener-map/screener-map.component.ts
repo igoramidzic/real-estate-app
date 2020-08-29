@@ -16,7 +16,7 @@ export class ScreenerMapComponent implements OnInit, OnChanges {
   @Input() searchLocation: ISearchLocation;
   @Input() listings: IPropertyListing[];
   @Input() selectedListingId: number;
-  @Input() showSelectedMarkerOnly: boolean = false;
+  @Input() propertyDetailsIsShown: boolean = false;
   @Output() markerClick: EventEmitter<number> = new EventEmitter<number>();
 
   @ViewChild('map') map: AgmMap;
@@ -28,7 +28,6 @@ export class ScreenerMapComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.listings)
     if (changes.searchLocation && changes.searchLocation.previousValue != changes.searchLocation.currentValue) {
       setTimeout(() => {
         this.zoom = 12;
@@ -36,11 +35,12 @@ export class ScreenerMapComponent implements OnInit, OnChanges {
     }
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   onMarkerClick(clickedId: number): void {
-    this.markerClick.emit(clickedId);
+    if (!this.propertyDetailsIsShown) {
+      this.markerClick.emit(clickedId);
+    }
     // document.getElementById(clickedId.toString()).scrollIntoView();
   }
 
@@ -51,11 +51,11 @@ export class ScreenerMapComponent implements OnInit, OnChanges {
   getIconUrlFromPropertyType(propType: EPropertyType): string {
     switch (propType) {
       case EPropertyType.Apartment:
-        return EIconUrl.blueCircle;
+        return this.propertyDetailsIsShown ? EIconUrl.blueCircleFaded : EIconUrl.blueCircle;
       case EPropertyType.House:
-        return EIconUrl.greenCircle;
+        return this.propertyDetailsIsShown ? EIconUrl.greenCircleFaded : EIconUrl.greenCircle;
       case EPropertyType.Condo:
-        return EIconUrl.yellowCircle;
+        return this.propertyDetailsIsShown ? EIconUrl.yellowCircleFaded : EIconUrl.yellowCircle;
       default:
         break;
     }
