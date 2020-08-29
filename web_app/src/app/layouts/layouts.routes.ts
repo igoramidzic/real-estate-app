@@ -3,12 +3,13 @@ import { NotFoundLayoutComponent } from './not-found-layout/not-found-layout.com
 import { NotFoundComponent } from '../modules/not-found/not-found.component';
 import { QuizLayoutComponent } from './quiz-layout/quiz-layout.component';
 import { ScreenerLayoutComponent } from './screener-layout/screener-layout.component';
+import { LangingPageLayoutComponent } from './langing-page-layout/langing-page-layout.component';
 
 export const LAYOUTS_ROUTES: Routes = [
     {
         path: '',
-        redirectTo: 'screener',
-        pathMatch: 'full'
+        component: LangingPageLayoutComponent,
+        loadChildren: () => import('../modules/landing-page/landing-page.module').then(m => m.LandingPageModule)
     },
     {
         path: 'quiz',
