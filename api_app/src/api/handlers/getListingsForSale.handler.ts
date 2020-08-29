@@ -67,7 +67,7 @@ export const getListingForSale = async (query: any): Promise<IPropertyListing[]>
                         baths: prop.baths,
                         prop_status: "for_sale",
                         thumbnailUrl: prop.thumbnail, // just get thumbnail for now, will call another api GET to get the rest
-                        sqfeet: prop.building_size.size, // adjust later to accomadate other units
+                        sqfeet: prop.building_size ? prop.building_size.size : null, // adjust later to accomadate other units
                         address: {
                             line: prop.address.line,
                             city: prop.address.city,
