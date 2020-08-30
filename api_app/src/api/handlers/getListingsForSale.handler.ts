@@ -103,7 +103,7 @@ export const getListingForSaleFaker = (query: any): Promise<IPropertyListing[]> 
         for (let i = 0; i < limit; i++) {
 
             let listing = {
-                propertyId: faker.random.number(1000000000),
+                propertyId: i + 1000000,
                 listingId: faker.random.number(1000000000),
                 price: faker.random.number(1000000),
                 list_date: faker.date.past(),
