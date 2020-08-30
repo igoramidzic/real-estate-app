@@ -5,6 +5,7 @@ import { IScreenSearch } from '../../core/models/screen-search';
 import { EListingStatus, EPropertyStatus, IPropertyDetails, IPropertyListing } from '../../core/models/property';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { EPropertyType } from 'src/app/core/enums/propertyTypes';
+import { resolve } from 'dns';
 
 @Injectable({
   providedIn: 'root'
@@ -61,43 +62,8 @@ export class ScreenerService {
   }
 
   getListingDetails(propertyId: string): Promise<IPropertyDetails> {
-    return new Promise((resolve, reject) => {
-      let propertyDetails: IPropertyDetails = {
-        propertyId: (1000000 + faker.random.number(30)).toString(),
-        listingId: faker.random.number(1000000000),
-        price: faker.random.number(1000000),
-        list_date: faker.date.past(),
-        last_update: faker.date.past(),
-        year_built: faker.random.number({ min: 1950, max: 2020 }),
-        listing_status: EListingStatus[<EListingStatus><unknown>(faker.helpers.replaceSymbolWithNumber(
-          faker.random.arrayElement(Object.getOwnPropertyNames(EListingStatus))
-        ))],
-        beds: faker.random.number(4),
-        baths: faker.random.number(2),
-        baths_full: faker.random.number(3),
-        prop_status: EPropertyStatus[<EPropertyStatus><unknown>(faker.helpers.replaceSymbolWithNumber(
-          faker.random.arrayElement(Object.getOwnPropertyNames(EPropertyStatus))
-        ))],
-        propertyType: EPropertyType[<EPropertyType><unknown>(faker.helpers.replaceSymbolWithNumber(
-          faker.random.arrayElement(Object.getOwnPropertyNames(EPropertyType))
-        ))],
-        address: {
-          line: faker.address.streetAddress(),
-          city: faker.address.city(),
-          state: faker.address.state(),
-          state_code: faker.address.stateAbbr(),
-          postal_code: faker.address.zipCode(),
-          neighborhood_name: faker.address.streetName(),
-          lat: 0,
-          lon: 0
-        },
-        sqfeet: faker.random.number({ min: 700, max: 4000 }),
-        photos: [this.photos[faker.random.number({ min: 0, max: this.photos.length - 1 })]]
-      }
 
-      setTimeout(() => {
-        faker.random.number(10) > 1 ? resolve(propertyDetails) : reject();
-      }, 1000);
-    })
+    return this.http.get<IPropertyDetails>(environment.apiBase + `/properties/listing-details/${propertyId}`)
+      .toPromise();
   }
 }

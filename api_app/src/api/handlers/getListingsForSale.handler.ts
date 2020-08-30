@@ -1,6 +1,6 @@
 import * as faker from 'faker';
 import { EPropertyType } from '../core/enums/propertyTypes';
-import { EListingStatus, EPropertyStatus, IPropertyListing } from "../core/models/property";
+import { EListingStatus, EPropertyStatus, IPropertyListing, IPropertyDetails } from "../core/models/property";
 import { CitiesService } from '../../services/cities.services'
 
 
@@ -137,3 +137,45 @@ export const getListingForSaleFaker = (query: any): Promise<IPropertyListing[]> 
 
 
 }
+
+export const getListingDetailsFaker = (id: string): Promise<IPropertyDetails> => {
+
+    return new Promise<IPropertyDetails>(async (resolve, reject) => {
+
+        let propertyDetails: IPropertyDetails = {
+            propertyId: id,
+            listingId: faker.random.number(1000000000),
+            price: faker.random.number(1000000),
+            list_date: faker.date.past(),
+            last_update: faker.date.past(),
+            year_built: faker.random.number({ min: 1950, max: 2020 }),
+            listing_status: faker.random.arrayElement(Object.values(EListingStatus)),
+            beds: faker.random.number(4),
+            baths: faker.random.number(2),
+            baths_full: faker.random.number(3),
+            prop_status: faker.random.arrayElement(Object.values(EPropertyStatus)),
+            propertyType: faker.random.arrayElement(Object.values(EPropertyType)),
+            address: {
+                line: faker.address.streetAddress(),
+                city: faker.address.city(),
+                state: faker.address.state(),
+                state_code: faker.address.stateAbbr(),
+                postal_code: faker.address.zipCode(),
+                neighborhood_name: faker.address.streetName(),
+                lat: 0,
+                lon: 0
+            },
+            sqfeet: faker.random.number({ min: 700, max: 4000 }),
+            photos: [photos[faker.random.number({ min: 0, max: photos.length - 1 })]]
+        }
+
+        if (faker.random.number(10) > -1) {
+            resolve(propertyDetails);
+        }
+        else {
+            reject();
+        }
+    })
+}
+
+
