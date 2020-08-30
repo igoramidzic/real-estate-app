@@ -53,13 +53,9 @@ export class CitiesService {
         return this.cityLocations.filter(d => {
             let fullString1 = (d.city + "," + d.state).toLowerCase().replace(/\s/g, '');
             let fullString2 = (d.city + "," + d.state_full_name).toLowerCase().replace(/\s/g, '');
-            let state1 = (d.state).toLowerCase().replace(/\s/g, '');
-            let state2 = (d.state_full_name).toLowerCase().replace(/\s/g, '');
 
             if (fullString1.startsWith(prefix.toLowerCase().replace(/\s/g, '')) ||
-                fullString2.startsWith(prefix.toLowerCase().replace(/\s/g, '')) ||
-                state1.startsWith(prefix.toLowerCase().replace(/\s/g, '')) ||
-                state2.startsWith(prefix.toLowerCase().replace(/\s/g, '')))
+                fullString2.startsWith(prefix.toLowerCase().replace(/\s/g, '')))
                 return true;
 
             return false;
