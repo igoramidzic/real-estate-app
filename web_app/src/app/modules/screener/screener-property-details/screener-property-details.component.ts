@@ -1,4 +1,6 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { IPropertyDetails } from 'src/app/core/models/property';
 import { ScreenerService } from '../../../services/screener/screener.service';
 
@@ -7,19 +9,28 @@ import { ScreenerService } from '../../../services/screener/screener.service';
   templateUrl: './screener-property-details.component.html',
   styleUrls: ['./screener-property-details.component.scss']
 })
-export class ScreenerPropertyDetailsComponent implements OnInit {
+export class ScreenerPropertyDetailsComponent implements OnInit, OnDestroy {
 
   @Input() propertyId: string;
   propertyDetails: IPropertyDetails;
   propertyNotFound: boolean;
   isLoading: boolean;
 
+  propertyChangeSubscription: Subscription;
+
   @Output() closeIconClick: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private screenerService: ScreenerService) { }
+  constructor(private screenerService: ScreenerService,
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getListingDetails();
+    this.propertyChangeSubscription = this.route.queryParams.subscribe(params => {
+      this.getListingDetails();
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.propertyChangeSubscription.unsubscribe();
   }
 
   async getListingDetails(): Promise<void> {

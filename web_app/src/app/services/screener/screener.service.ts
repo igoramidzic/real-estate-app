@@ -62,7 +62,6 @@ export class ScreenerService {
   }
 
   getListingDetails(propertyId: string): Promise<IPropertyDetails> {
-
     return this.http.get<IPropertyDetails>(environment.apiBase + `/properties/listing-details/${propertyId}`)
       .toPromise();
   }

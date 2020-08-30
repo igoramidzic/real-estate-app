@@ -71,7 +71,7 @@ export class ScreenerFilterComponent implements OnInit {
     // no need to get new listing, emit listing details card
     else {
       if (params['property']) {
-        console.log('emit')
+        // console.log('emit')
       }
     }
 
