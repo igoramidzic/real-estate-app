@@ -63,7 +63,7 @@ export class ScreenerService {
   getListingDetails(propertyId: string): Promise<IPropertyDetails> {
     return new Promise((resolve, reject) => {
       let propertyDetails: IPropertyDetails = {
-        propertyId: propertyId,
+        propertyId: (1000000 + faker.random.number(30)).toString(),
         listingId: faker.random.number(1000000000),
         price: faker.random.number(1000000),
         list_date: faker.date.past(),
