@@ -1,10 +1,8 @@
-ARG NODE_ENV
-
 FROM node:13
 
-RUN mkdir -p /usr/src/realestateapp_web
+RUN mkdir -p /realestateapp_web
 
-WORKDIR /usr/src/realestateapp_web
+WORKDIR /realestateapp_web
 
 COPY package*.json ./
 
