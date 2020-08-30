@@ -1,0 +1,26 @@
+<a class="link-container" [routerLink]="[]" [queryParams]="{ 'property': propertyListing.propertyId }"
+  [queryParamsHandling]="'merge'">
+  <div class="d-flex align-items-center">
+    <div>
+      <div class="property-img-wrapper hvr-grow-shadow"
+        [style]="'background-image: url(' + propertyListing.thumbnailUrl +')'">
+      </div>
+    </div>
+
+    <div class="d-flex flex-column pl-3">
+      <span class="line-address">{{ propertyListing.address.line }}</span>
+      <span class="price">{{ propertyListing.price | currency }}</span>
+
+      <div class="d-flex align-items-center">
+        <div class="mr-3">
+          <img class="stat-icon mr-2" src="assets/icons/mattress.svg" alt="">
+          <span class="stat-value">{{ propertyListing.beds }}</span>
+        </div>
+        <div>
+          <img class="stat-icon mr-1" src="assets/icons/toilet.svg" alt="">
+          <span class="stat-value">{{ propertyListing.baths + propertyListing.baths_full }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>

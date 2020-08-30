@@ -23,6 +23,7 @@ import { PropertyThumbnailPlaceholderComponent } from './components/properties/p
 import { PropertyThumbnailComponent } from './components/properties/property-thumbnail/property-thumbnail.component';
 import { SpinnerComponent } from './components/loaders/spinner/spinner.component';
 import { SortByFormComponent } from './components/forms/sort-by-form/sort-by-form.component';
+import { MarkerInfoCardComponent } from './components/map/marker-info-card/marker-info-card.component';
 
 @NgModule({
     imports: [
@@ -51,6 +52,7 @@ import { SortByFormComponent } from './components/forms/sort-by-form/sort-by-for
         PropertyThumbnailComponent,
         SpinnerComponent,
         SortByFormComponent,
+        MarkerInfoCardComponent,
     ],
     exports: [
         CommonModule,
@@ -73,7 +75,8 @@ import { SortByFormComponent } from './components/forms/sort-by-form/sort-by-for
         PropertyThumbnailPlaceholderComponent,
         PropertyThumbnailComponent,
         SpinnerComponent,
-        SortByFormComponent
+        SortByFormComponent,
+        MarkerInfoCardComponent
     ],
 })
 export class SharedModule { }

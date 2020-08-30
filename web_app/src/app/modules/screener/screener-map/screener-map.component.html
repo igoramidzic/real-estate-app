@@ -5,6 +5,9 @@
     <agm-marker [latitude]="l.address.lat" [longitude]="l.address.lon" (markerClick)="onMarkerClick(l.propertyId)"
       [iconUrl]="l.propertyId == selectedListingId ? 'assets/icons/red-circle-18x18.svg' : getIconUrlFromPropertyType(l.propertyType)"
       [zIndex]="l.propertyId == selectedListingId ? 2 : 1">
+      <agm-info-window>
+        <app-marker-info-card [propertyListing]="l"></app-marker-info-card>
+      </agm-info-window>
     </agm-marker>
   </div>
 </agm-map>

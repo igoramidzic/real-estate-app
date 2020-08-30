@@ -1,6 +1,6 @@
 $primary: #5470f1;
 $secondary: #568e74;
-$success: #1edd8a;
+$success: #4eac79;
 $danger: #FB786F;
 
 $theme-colors: () !default;
@@ -13,7 +13,7 @@ $theme-colors: map-merge(("primary": $primary, "success": $success, "danger": $d
   --background: #ffffff;
   --primary-color: #5470f1;
   --secondary-color: #568e74;
-  --success-color: #1edd8a;
+  --success-color: #4eac79;
   --danger-color: #FB786F;
   --text-color: #3c3c3c;
   --text-color-light: #b3b3b3;
@@ -22,7 +22,7 @@ $theme-colors: map-merge(("primary": $primary, "success": $success, "danger": $d
   --font-weight: 400;
   --line-height: 1.2;
   --border-radius: 8px;
-  --hint-color: #a9a9a9;
+  --hint-color: #7e8888;
   --hover-color: #f9f9f9;
 }
 
