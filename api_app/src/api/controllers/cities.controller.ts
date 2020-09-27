@@ -5,7 +5,7 @@ const router: Router = Router();
 
 router.get("/cities-from-prefix", async (req: Request, res: Response) => {
     try {
-        let prefix: string = req.query.prefix;
+        let prefix: string = String(req.query.prefix);
         let limit: number = +req.query.limit;
         res.status(200).json(CitiesService.getCitiesFromPrefix(prefix, limit));
     } catch (error) {
