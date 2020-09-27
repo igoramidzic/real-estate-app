@@ -13,6 +13,7 @@ export class CitiesService {
   constructor(private http: HttpClient) { }
 
   getCitiesFromPrefix(prefix: string, limit = 5): Promise<ISearchLocation[]> {
+    console.log(environment)
 
     let params = new HttpParams().set("prefix", prefix).set("limit", limit.toString())
 
