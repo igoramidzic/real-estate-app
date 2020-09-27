@@ -8,5 +8,7 @@
         "heroku-postbuild": "npm run build --prefix api_app && npm run build --prefix web_app",
         "start": "npm start --prefix api_app"
     },
-    "dependencies": {}
+    "dependencies": {
+        "typescript": "^3.6.3"
+    }
 }
