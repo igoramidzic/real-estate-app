@@ -5,7 +5,7 @@
     "author": "Igor Amidzic",
     "license": "MIT",
     "scripts": {
-        "start": "npm run build && node dist/server.js",
+        "start": "node dist/server.js",
         "build": "npm run build-ts",
         "build-ts": "tsc",
         "debug": "npm run build && npm run watch-debug",
@@ -33,6 +33,7 @@
         "passport": "^0.4.0",
         "passport-facebook": "^3.0.0",
         "passport-local": "^1.0.0",
+        "path": "^0.12.7",
         "pug": "^2.0.4",
         "unirest": "^0.6.0",
         "winston": "^3.2.1"
